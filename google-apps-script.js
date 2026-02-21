@@ -1,0 +1,80 @@
+const SHEET_NAME = 'RSVPs';
+const ADMIN_KEY  = 'dorcas-samuel-2026'; // ← change this to something private
+
+/* ---------- Receive RSVP form submissions ---------- */
+function doPost(e) {
+  try {
+    const sheet = getOrCreateSheet();
+    const data  = JSON.parse(e.postData.contents);
+
+    sheet.appendRow([
+      new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' }),
+      data.name         || '',
+      data.email        || '',
+      data.attendance === 'yes' ? 'Attending' : 'Not Attending',
+      data.attendance === 'yes' ? Number(data.guests || 1) : 0,
+      Array.isArray(data.allergies) ? data.allergies.join(', ') : (data.allergies || ''),
+      data.other_allergy || '',
+      data.message      || '',
+    ]);
+
+    return ok({ success: true });
+  } catch (err) {
+    return ok({ success: false, error: err.message });
+  }
+}
+
+/* ---------- Serve RSVP data to the admin page (JSONP) ---------- */
+function doGet(e) {
+  const callback = e.parameter.callback || null;
+
+  if (!e.parameter.key || e.parameter.key !== ADMIN_KEY) {
+    return respond({ success: false, error: 'Unauthorized' }, callback);
+  }
+
+  const sheet = getOrCreateSheet();
+  const rows  = sheet.getDataRange().getValues();
+
+  return respond({ success: true, data: rows }, callback);
+}
+
+/* ---------- Helpers ---------- */
+function getOrCreateSheet() {
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  let   sheet = ss.getSheetByName(SHEET_NAME);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME);
+    sheet.appendRow([
+      'Timestamp', 'Name', 'Email', 'Attending',
+      'Guest Count', 'Dietary Requirements', 'Other Restrictions', 'Message',
+    ]);
+    sheet.setFrozenRows(1);
+
+    // Style header row
+    const header = sheet.getRange(1, 1, 1, 8);
+    header.setBackground('#1A1A2E');
+    header.setFontColor('#C9A84C');
+    header.setFontWeight('bold');
+    sheet.setColumnWidths(1, 8, 180);
+  }
+
+  return sheet;
+}
+
+function respond(payload, callback) {
+  const json = JSON.stringify(payload);
+  if (callback) {
+    // JSONP — bypasses CORS entirely
+    return ContentService
+      .createTextOutput(callback + '(' + json + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService
+    .createTextOutput(json)
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function ok(payload) {
+  return respond(payload, null);
+}

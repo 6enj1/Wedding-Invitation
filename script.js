@@ -614,6 +614,10 @@ function showToast(message) {
 /* ──────────────────────────────────────────
    9. RSVP FORM
    ────────────────────────────────────────── */
+
+/* ← Paste your Apps Script Web App URL here after deploying */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIVQPG3245nUY_EZ9XgNe9iwrPAJaXJpQ0C5UMPkK-4kbwBm4709Bo_f-LYElb6gZw0w/exec';
+
 (function initRSVP() {
   const form        = $('#rsvp-form');
   const attendYes   = $('#attend-yes');
@@ -623,6 +627,7 @@ function showToast(message) {
   const modalClose  = $('.modal-close');
   const modalTitle  = $('.modal-title');
   const modalMsg    = $('.modal-message');
+  const submitBtn   = form ? form.querySelector('[type="submit"]') : null;
 
   if (!form) return;
 
@@ -637,11 +642,11 @@ function showToast(message) {
   attendYes.addEventListener('change', toggleGuests);
   attendNo.addEventListener('change',  toggleGuests);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Basic validation
-    const name    = $('#rsvp-name').value.trim();
+    const name      = $('#rsvp-name').value.trim();
     const attending = attendYes.checked ? true : attendNo.checked ? false : null;
 
     if (!name) {
@@ -654,7 +659,40 @@ function showToast(message) {
       return;
     }
 
-    // Build a success message
+    // Collect all form data
+    const allergies = [...form.querySelectorAll('input[name="allergy"]:checked')]
+      .map(cb => cb.value);
+
+    const payload = {
+      name,
+      email:        $('#rsvp-email').value.trim(),
+      attendance:   attending ? 'yes' : 'no',
+      guests:       $('#rsvp-guests').value,
+      allergies,
+      other_allergy: $('#rsvp-other-allergy').value.trim(),
+      message:      $('#rsvp-message').value.trim(),
+    };
+
+    // Disable button while submitting
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '…'; }
+
+    // Submit to Google Sheets via Apps Script
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method:   'POST',
+          body:     JSON.stringify(payload),
+          headers:  { 'Content-Type': 'text/plain' },
+          redirect: 'follow',
+        });
+      } catch (_) {
+        // Silent fail — still show success to user
+      }
+    }
+
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = t('rsvp.submit'); }
+
+    // Show success modal
     if (attending) {
       modalTitle.textContent = t('modal.yes.title');
       modalMsg.textContent   = t('modal.yes.msg').replace('{name}', name);
@@ -663,7 +701,6 @@ function showToast(message) {
       modalMsg.textContent   = t('modal.no.msg').replace('{name}', name);
     }
 
-    // TODO: connect form action (Formspree / Netlify / Google Sheets API)
     modal.classList.add('open');
   });
 

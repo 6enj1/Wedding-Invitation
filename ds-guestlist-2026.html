@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D &amp; S — Guest Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #111111;
+      --dark:       #1A1A2E;
+      --gold:       #C9A84C;
+      --gold-light: #E8D48B;
+      --crystal:    #F0EDE3;
+      --white:      #FFFFFF;
+      --muted:      #888;
+      --green:      #4caf6e;
+      --red:        #e05c5c;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    #login-screen h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    #login-screen p { color: var(--muted); font-size: 0.85rem; }
+    #login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 340px;
+    }
+    #login-form input {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #login-form input:focus { border-color: var(--gold); }
+    #login-btn {
+      background: var(--gold);
+      border: none;
+      border-radius: 6px;
+      color: var(--black);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.8rem;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    #login-btn:hover { background: var(--gold-light); }
+    #login-error { color: var(--red); font-size: 0.8rem; text-align: center; display: none; }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+
+    header {
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .header-title span { color: var(--muted); font-size: 0.75rem; font-family: 'Montserrat', sans-serif; display: block; margin-top: 2px; font-weight: 400; }
+
+    .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .btn {
+      background: none;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--gold); color: var(--black); }
+    .btn-logout { border-color: #444; color: var(--muted); }
+    .btn-logout:hover { background: #333; color: var(--white); border-color: #555; }
+
+    main { padding: 2rem; max-width: 1300px; margin: 0 auto; }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-value.green { color: var(--green); }
+    .stat-value.red   { color: var(--red); }
+
+    /* ── FILTERS ── */
+    .filters {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-input {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.55rem 1rem;
+      outline: none;
+      width: 260px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--gold); }
+    .filter-btn {
+      background: none;
+      border: 1px solid #333;
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.9rem;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    thead { background: rgba(201,168,76,0.08); }
+    th {
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.9rem 1.1rem;
+      text-align: left;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    td {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--crystal);
+      padding: 0.85rem 1.1rem;
+      vertical-align: middle;
+    }
+    tr:hover td { background: rgba(255,255,255,0.03); }
+
+    .badge {
+      border-radius: 20px;
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+    }
+    .badge-yes { background: rgba(76,175,110,0.15); color: var(--green); }
+    .badge-no  { background: rgba(224,92,92,0.15);  color: var(--red); }
+
+    .guest-count {
+      background: rgba(201,168,76,0.12);
+      border-radius: 12px;
+      color: var(--gold);
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      min-width: 28px;
+      padding: 0.15rem 0.6rem;
+      text-align: center;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      border: 2px solid rgba(201,168,76,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      animation: spin 0.7s linear infinite;
+      margin: 3rem auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .timestamp { color: var(--muted); font-size: 0.75rem; }
+    .msg-cell  { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .diet-cell { max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    @media (max-width: 768px) {
+      main { padding: 1rem; }
+      header { padding: 1rem; }
+      .td-hide { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+  <h1>D &amp; S — Guest List</h1>
+  <p>Enter your admin password to view RSVPs</p>
+  <form id="login-form">
+    <input type="password" id="pwd-input" placeholder="Admin password" autocomplete="current-password" />
+    <button type="submit" id="login-btn">Enter</button>
+    <p id="login-error">Incorrect password. Please try again.</p>
+  </form>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard">
+  <header>
+    <div class="header-title">
+      Guest List
+      <span>Dorcas &amp; Samuel · 26 December 2026</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+      <button class="btn" onclick="loadData()">↻ Refresh</button>
+      <button class="btn btn-logout" onclick="logout()">Log out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total RSVPs</div>
+        <div class="stat-value" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Attending</div>
+        <div class="stat-value green" id="stat-attending">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Not Attending</div>
+        <div class="stat-value red" id="stat-not">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Guests</div>
+        <div class="stat-value" id="stat-guests">—</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input class="search-input" type="search" id="search" placeholder="Search by name or email…" oninput="renderTable()" />
+      <button class="filter-btn active" data-filter="all"       onclick="setFilter(this)">All</button>
+      <button class="filter-btn"        data-filter="attending" onclick="setFilter(this)">Attending</button>
+      <button class="filter-btn"        data-filter="not"       onclick="setFilter(this)">Not Attending</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap" id="table-wrap">
+      <div class="spinner"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+  /* ── CONFIG — paste your Apps Script Web App URL here ── */
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIVQPG3245nUY_EZ9XgNe9iwrPAJaXJpQ0C5UMPkK-4kbwBm4709Bo_f-LYElb6gZw0w/exec';
+  const ADMIN_KEY       = 'dorcas-samuel-2026'; // must match google-apps-script.js
+  const ADMIN_PASSWORD  = 'dorcas2026';         // ← change this to your own password
+
+  let allRows   = [];
+  let activeFilter = 'all';
+
+  /* ── LOGIN ── */
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pwd = document.getElementById('pwd-input').value;
+    if (pwd === ADMIN_PASSWORD) {
+      sessionStorage.setItem('admin_auth', '1');
+      showDashboard();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  });
+
+  function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display    = 'block';
+    loadData();
+  }
+
+  function logout() {
+    sessionStorage.removeItem('admin_auth');
+    location.reload();
+  }
+
+  // Auto-login if session is still active
+  if (sessionStorage.getItem('admin_auth') === '1') showDashboard();
+
+  /* ── LOAD DATA via JSONP (bypasses CORS) ── */
+  function loadData() {
+    document.getElementById('table-wrap').innerHTML = '<div class="spinner"></div>';
+
+    const cbName = 'rsvpCb_' + Date.now();
+    const script = document.createElement('script');
+    script.src   = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&callback=${cbName}`;
+
+    const timer = setTimeout(() => {
+      cleanup();
+      document.getElementById('table-wrap').innerHTML =
+        '<div class="empty-state">⚠️ Request timed out. Check your Apps Script URL.</div>';
+    }, 12000);
+
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[cbName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+
+    window[cbName] = function(json) {
+      cleanup();
+      if (!json.success) {
+        document.getElementById('table-wrap').innerHTML =
+          `<div class="empty-state">⚠️ ${json.error || 'Failed to load'}</div>`;
+        return;
+      }
+      allRows = json.data.slice(1); // skip header row
+      updateStats();
+      renderTable();
+    };
+
+    script.onerror = function() {
+      cleanup();
+      document.getElementById('table-wrap').innerHTML =
+        '<div class="empty-state">⚠️ Could not reach the Apps Script. Check the URL.</div>';
+    };
+
+    document.head.appendChild(script);
+  }
+
+  /* ── STATS ── */
+  function updateStats() {
+    const attending    = allRows.filter(r => r[3] === 'Attending');
+    const notAttending = allRows.filter(r => r[3] === 'Not Attending');
+    const totalGuests  = attending.reduce((sum, r) => sum + (Number(r[4]) || 0), 0);
+
+    document.getElementById('stat-total').textContent     = allRows.length;
+    document.getElementById('stat-attending').textContent = attending.length;
+    document.getElementById('stat-not').textContent       = notAttending.length;
+    document.getElementById('stat-guests').textContent    = totalGuests;
+  }
+
+  /* ── FILTER ── */
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderTable();
+  }
+
+  /* ── RENDER TABLE ── */
+  function renderTable() {
+    const query = document.getElementById('search').value.toLowerCase();
+
+    let rows = allRows.filter(r => {
+      const name  = String(r[1]).toLowerCase();
+      const email = String(r[2]).toLowerCase();
+      const matchSearch = !query || name.includes(query) || email.includes(query);
+
+      const attending = r[3] === 'Attending';
+      const matchFilter =
+        activeFilter === 'all'       ? true :
+        activeFilter === 'attending' ? attending :
+        !attending;
+
+      return matchSearch && matchFilter;
+    });
+
+    if (!rows.length) {
+      document.getElementById('table-wrap').innerHTML =
+        '<div class="empty-state">No guests found.</div>';
+      return;
+    }
+
+    const html = `
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th class="td-hide">Email</th>
+            <th>Attending</th>
+            <th>Guests</th>
+            <th class="td-hide">Dietary</th>
+            <th class="td-hide">Message</th>
+            <th class="td-hide">Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((r, i) => `
+            <tr>
+              <td class="timestamp">${i + 1}</td>
+              <td><strong>${esc(r[1])}</strong></td>
+              <td class="td-hide timestamp">${esc(r[2])}</td>
+              <td>
+                ${r[3] === 'Attending'
+                  ? '<span class="badge badge-yes">✓ Attending</span>'
+                  : '<span class="badge badge-no">✗ Not Attending</span>'}
+              </td>
+              <td>
+                ${r[3] === 'Attending'
+                  ? `<span class="guest-count">${r[4] || 1}</span>`
+                  : '—'}
+              </td>
+              <td class="td-hide diet-cell">${esc([r[5], r[6]].filter(Boolean).join(', ')) || '—'}</td>
+              <td class="td-hide msg-cell" title="${esc(r[7])}">${esc(r[7]) || '—'}</td>
+              <td class="td-hide timestamp">${esc(r[0])}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+
+    document.getElementById('table-wrap').innerHTML = html;
+  }
+
+  /* ── EXPORT CSV ── */
+  function exportCSV() {
+    const headers = ['Timestamp','Name','Email','Attending','Guests','Dietary','Other Restrictions','Message'];
+    const lines   = [headers, ...allRows].map(r =>
+      r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+    );
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement('a'), { href: url, download: 'dorcas-samuel-rsvp.csv' });
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>
