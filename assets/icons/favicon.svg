@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0B0B0D"/>
+  <!-- Gold top rule -->
+  <rect x="14" y="10" width="36" height="1" rx="0.5" fill="#C9A84C" opacity="0.7"/>
+  <!-- D & S monogram -->
+  <text
+    x="32" y="38"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="22"
+    font-style="italic"
+    fill="#C9A84C"
+    text-anchor="middle"
+    letter-spacing="1">D&#38;S</text>
+  <!-- Gold bottom rule -->
+  <rect x="14" y="46" width="36" height="1" rx="0.5" fill="#C9A84C" opacity="0.7"/>
+  <!-- Bottom tiny label -->
+  <text
+    x="32" y="57"
+    font-family="Georgia, serif"
+    font-size="5"
+    fill="#C9A84C"
+    text-anchor="middle"
+    letter-spacing="2"
+    opacity="0.6">2026</text>
+</svg>
