@@ -1,0 +1,5 @@
+# Apps Script source — contains spreadsheet ID, keep off GitHub
+google-apps-script.js
+
+# macOS
+.DS_Store
