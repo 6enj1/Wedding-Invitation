@@ -303,10 +303,11 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
       const bankInfo = [
-        'Bank: [Bank Name]',
-        'Account Holder: Dorcas & Samie',
-        'Account Number: XXXX-XXXX-XXXX-XXXX',
-        'Sort Code / IBAN: XX-XX-XX',
+        'Bank: FNB / RMB',
+        'Account Holder: Benjamin Malemo',
+        'Account Type: FNB Aspire Current Account',
+        'Account Number: 63109054914',
+        'Branch Code: 250655',
         'Reference: D&S Wedding',
       ].join('\n');
 
