@@ -1,5 +1,6 @@
-const SHEET_NAME = 'RSVPs';
-const ADMIN_KEY  = 'dorcas-samuel-2026'; // ← change this to something private
+const SPREADSHEET_ID = '132SrQiTyk0M-DEr6AxgMnzb1cL2vanb94nZ0g71KqD0';
+const SHEET_NAME     = 'RSVPs';
+const ADMIN_KEY      = 'dorcas-samuel-2026';
 
 /* ---------- Receive RSVP form submissions ---------- */
 function doPost(e) {
@@ -50,7 +51,7 @@ function doGet(e) {
 
 /* ---------- Helpers ---------- */
 function getOrCreateSheet() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
   let   sheet = ss.getSheetByName(SHEET_NAME);
 
   if (!sheet) {
