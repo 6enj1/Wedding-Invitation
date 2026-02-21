@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dorcas &amp; Samie — 27 December 2026 | Wedding Invitation</title>
-  <meta name="description" content="You are cordially invited to the wedding celebration of Dorcas &amp; Samie on 27 December 2026. RSVP and find all the details here." />
+  <title>Dorcas &amp; Samuel — 26 December 2026 | Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to the wedding celebration of Dorcas &amp; Samuel on 26 December 2026. RSVP and find all the details here." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
   <link rel="shortcut icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
 
   <!-- Open Graph (WhatsApp / social preview) -->
-  <meta property="og:title"       content="Dorcas &amp; Samie — 27 December 2026 💍" />
+  <meta property="og:title"       content="Dorcas &amp; Samuel — 26 December 2026 💍" />
   <meta property="og:description" content="You are cordially invited to a Royal Night in Crystal. Join us for our wedding celebration at Avianto, Muldersdrift." />
   <meta property="og:image"        content="https://wedding-invitation-tan-eight.vercel.app/assets/images/desktop-banner.png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:type"         content="website" />
   <meta property="og:url"          content="https://wedding-invitation-tan-eight.vercel.app" />
-  <meta property="og:site_name"    content="Dorcas &amp; Samie Wedding" />
+  <meta property="og:site_name"    content="Dorcas &amp; Samuel Wedding" />
 
   <!-- Twitter / iMessage card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Dorcas &amp; Samie — 27 December 2026 💍" />
+  <meta name="twitter:title"       content="Dorcas &amp; Samuel — 26 December 2026 💍" />
   <meta name="twitter:description" content="You are cordially invited to a Royal Night in Crystal. Join us for our wedding celebration at Avianto, Muldersdrift." />
   <meta name="twitter:image"        content="https://wedding-invitation-tan-eight.vercel.app/assets/images/desktop-banner.png" />
 
@@ -42,7 +42,7 @@
   <div class="loading-content">
     <div class="loading-monogram">D &amp; S</div>
     <div class="loading-label">
-      Loading<span class="dot dot-1">.</span><span class="dot dot-2">.</span><span class="dot dot-3">.</span>
+      <span data-i18n="loading">Loading</span><span class="dot dot-1">.</span><span class="dot dot-2">.</span><span class="dot dot-3">.</span>
     </div>
     <div class="loading-bar-wrap"><div id="loading-bar" class="loading-bar"></div></div>
   </div>
@@ -52,8 +52,8 @@
      INTRO COVER IMAGE
      ════════════════════════════════════════ -->
 <div id="intro-cover" class="intro-cover">
-  <img src="assets/images/desktop-banner.png" alt="Dorcas and Samie wedding invitation" class="intro-cover-img intro-cover-desktop" />
-  <img src="assets/images/mobileimg.png"   alt="Dorcas and Samie wedding invitation" class="intro-cover-img intro-cover-mobile" />
+  <img src="assets/images/desktop-banner.png" alt="Dorcas and Samuel wedding invitation" class="intro-cover-img intro-cover-desktop" />
+  <img src="assets/images/mobileimg.png"   alt="Dorcas and Samuel wedding invitation" class="intro-cover-img intro-cover-mobile" />
   <div class="intro-cover-hint">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
@@ -75,16 +75,19 @@
      NAVIGATION
      ════════════════════════════════════════ -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <a href="#hero" class="nav-logo" aria-label="Dorcas and Samie — go to top">D &amp; S</a>
+  <a href="#hero" class="nav-logo" aria-label="Dorcas and Samuel — go to top">D &amp; S</a>
 
   <div class="nav-right">
     <!-- Desktop links -->
     <div class="nav-links" role="list">
-      <a href="#story" role="listitem">Our Story</a>
-      <a href="#details" role="listitem">Details</a>
-      <a href="#programme" role="listitem">Programme</a>
-      <a href="#rsvp" role="listitem">RSVP</a>
+      <a href="#story"   role="listitem" data-i18n="nav.story">Our Story</a>
+      <a href="#details" role="listitem" data-i18n="nav.details">Details</a>
+      <a href="#programme" role="listitem" data-i18n="nav.programme">Programme</a>
+      <a href="#rsvp"    role="listitem" data-i18n="nav.rsvp">RSVP</a>
     </div>
+
+    <!-- Language Toggle -->
+    <button class="lang-toggle" id="lang-toggle" title="Switch language / Changer la langue">FR</button>
 
     <!-- Music Toggle -->
     <button class="music-toggle" aria-label="Play background music" title="Toggle music">
@@ -109,12 +112,12 @@
 
 <!-- Mobile Nav Drawer -->
 <div class="mobile-nav" role="dialog" aria-label="Mobile navigation">
-  <a href="#story">Our Story</a>
-  <a href="#details">Details</a>
-  <a href="#programme">Programme</a>
-  <a href="#accommodation">Accommodation</a>
-  <a href="#faq">FAQ</a>
-  <a href="#rsvp">RSVP</a>
+  <a href="#story"          data-i18n="nav.story">Our Story</a>
+  <a href="#details"        data-i18n="nav.details">Details</a>
+  <a href="#programme"      data-i18n="nav.programme">Programme</a>
+  <a href="#accommodation"  data-i18n="nav.accommodation">Accommodation</a>
+  <a href="#faq"            data-i18n="nav.faq">FAQ</a>
+  <a href="#rsvp"           data-i18n="nav.rsvp">RSVP</a>
 </div>
 
 <!-- Background Audio -->
@@ -137,19 +140,19 @@
   <canvas class="hero-canvas" aria-hidden="true"></canvas>
 
   <div class="hero-content">
-    <span class="hero-label">Together with their families</span>
+    <span class="hero-label" data-i18n="hero.label">Together with their families</span>
 
     <span class="hero-name">Dorcas</span>
     <span class="hero-ampersand">&amp;</span>
-    <span class="hero-name">Samie</span>
+    <span class="hero-name">Samuel</span>
 
     <div class="gold-divider" aria-hidden="true">◆</div>
 
-    <span class="hero-date">27 December 2026</span>
+    <span class="hero-date">26 December 2026</span>
   </div>
 
   <div class="hero-bottom">
-    <a href="#rsvp" class="hero-tagline-bottom" aria-label="Confirm your attendance">
+    <a href="#rsvp" class="hero-tagline-bottom" aria-label="Confirm your attendance" data-i18n="hero.tagline">
       Request the honour of your presence at their wedding celebration
     </a>
     <a href="#rsvp" class="hero-chevron" aria-label="Scroll down to confirm attendance">
@@ -166,26 +169,26 @@
      ════════════════════════════════════════ -->
 <section id="countdown" class="countdown-section" aria-label="Countdown to the wedding">
   <div class="section-header">
-    <h2 class="section-title gold fade-in">Counting Down</h2>
-    <p class="section-subtitle fade-in fade-in-delay-1">To the most special day of our lives</p>
+    <h2 class="section-title gold fade-in" data-i18n="countdown.title">Counting Down</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="countdown.subtitle">To the most special day of our lives</p>
   </div>
 
   <div class="countdown-grid" role="timer" aria-label="Time until the wedding">
     <div class="glass-card countdown-box fade-in fade-in-delay-1">
       <span id="countdown-days"   class="countdown-number">--</span>
-      <span class="countdown-label">Days</span>
+      <span class="countdown-label" data-i18n="countdown.days">Days</span>
     </div>
     <div class="glass-card countdown-box fade-in fade-in-delay-2">
       <span id="countdown-hours"  class="countdown-number">--</span>
-      <span class="countdown-label">Hours</span>
+      <span class="countdown-label" data-i18n="countdown.hours">Hours</span>
     </div>
     <div class="glass-card countdown-box fade-in fade-in-delay-3">
       <span id="countdown-minutes" class="countdown-number">--</span>
-      <span class="countdown-label">Minutes</span>
+      <span class="countdown-label" data-i18n="countdown.minutes">Minutes</span>
     </div>
     <div class="glass-card countdown-box fade-in fade-in-delay-4">
       <span id="countdown-seconds" class="countdown-number">--</span>
-      <span class="countdown-label">Seconds</span>
+      <span class="countdown-label" data-i18n="countdown.seconds">Seconds</span>
     </div>
   </div>
 </section>
@@ -194,11 +197,10 @@
 <!-- ════════════════════════════════════════
      3. OUR STORY (Optional)
      ════════════════════════════════════════ -->
-<!-- Optional: Our Story -->
 <section id="story" class="story-section" aria-label="Our story">
   <div class="section-header">
-    <span class="section-label">How it all began</span>
-    <h2 class="section-title dark fade-in">Our Story</h2>
+    <span class="section-label" data-i18n="story.label">How it all began</span>
+    <h2 class="section-title dark fade-in" data-i18n="story.title">Our Story</h2>
     <div class="gold-divider fade-in fade-in-delay-1" aria-hidden="true">◆</div>
   </div>
 
@@ -206,24 +208,24 @@
     <article class="timeline-item fade-in" role="listitem">
       <div class="timeline-node" aria-hidden="true"></div>
       <div class="timeline-card">
-        <h3>When We Met</h3>
-        <p>Every great love story has a beginning — ours was no different. Two paths crossed at just the right moment, and nothing was ever the same again.</p>
+        <h3 data-i18n="story.met.title">When We Met</h3>
+        <p data-i18n="story.met.text">Every great love story has a beginning — ours was no different. Two paths crossed at just the right moment, and nothing was ever the same again.</p>
       </div>
     </article>
 
     <article class="timeline-item fade-in fade-in-delay-1" role="listitem">
       <div class="timeline-node" aria-hidden="true"></div>
       <div class="timeline-card">
-        <h3>The First Date</h3>
-        <p>Laughter, good food, and a conversation that never seemed to end. That evening, we both knew something very special had started.</p>
+        <h3 data-i18n="story.date.title">The First Date</h3>
+        <p data-i18n="story.date.text">Laughter, good food, and a conversation that never seemed to end. That evening, we both knew something very special had started.</p>
       </div>
     </article>
 
     <article class="timeline-item fade-in fade-in-delay-2" role="listitem">
       <div class="timeline-node" aria-hidden="true"></div>
       <div class="timeline-card">
-        <h3>The Proposal</h3>
-        <p>Under a sky full of stars, with hearts full of love, came the question that would set us on the path to forever. She said yes. ◆</p>
+        <h3 data-i18n="story.proposal.title">The Proposal</h3>
+        <p data-i18n="story.proposal.text">Under a sky full of stars, with hearts full of love, came the question that would set us on the path to forever. She said yes. ◆</p>
       </div>
     </article>
   </div>
@@ -235,9 +237,9 @@
      ════════════════════════════════════════ -->
 <section id="details" class="details-section" aria-label="Details of the day">
   <div class="section-header">
-    <span class="section-label">Mark your calendar</span>
-    <h2 class="section-title gold fade-in">Details of the Day</h2>
-    <p class="section-subtitle fade-in fade-in-delay-1">Everything you need to know</p>
+    <span class="section-label" data-i18n="details.label">Mark your calendar</span>
+    <h2 class="section-title gold fade-in" data-i18n="details.title">Details of the Day</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="details.subtitle">Everything you need to know</p>
   </div>
 
   <div class="glass-card details-card fade-in">
@@ -248,7 +250,7 @@
     </p>
     <p class="venue-time">
       <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      From 17:00 to 03:00 · 27 December 2026
+      <span data-i18n="details.time">From 15:00 to 23:00 · 26 December 2026</span>
     </p>
 
     <div class="venue-image-wrap">
@@ -276,10 +278,11 @@
         target="_blank"
         rel="noopener noreferrer"
         class="btn-gold"
-        aria-label="Open venue in Google Maps">
+        aria-label="Open venue in Google Maps"
+        data-i18n="details.maps">
         &#x1F5FA; Open in Maps
       </a>
-      <button class="btn-outline-gold" onclick="downloadICS()" aria-label="Add wedding to your calendar">
+      <button class="btn-outline-gold" onclick="downloadICS()" aria-label="Add wedding to your calendar" data-i18n="details.calendar">
         &#x1F4C5; Add to Calendar
       </button>
     </div>
@@ -300,9 +303,9 @@
   </div>
 
   <div class="section-header">
-    <span class="section-label">The celebration</span>
-    <h2 class="section-title gold fade-in">Programme of the Day</h2>
-    <p class="section-subtitle fade-in fade-in-delay-1">What we have prepared for you</p>
+    <span class="section-label" data-i18n="programme.label">The celebration</span>
+    <h2 class="section-title gold fade-in" data-i18n="programme.title">Programme of the Day</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="programme.subtitle">What we have prepared for you</p>
   </div>
 
   <div class="programme-timeline">
@@ -313,9 +316,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">17:00</p>
-          <p class="programme-event">Arrival</p>
-          <p class="programme-desc">Reception &amp; welcome at the estate</p>
+          <p class="programme-time">15:00</p>
+          <p class="programme-event" data-i18n="programme.arrival.event">Arrival</p>
+          <p class="programme-desc"  data-i18n="programme.arrival.desc">Reception &amp; welcome at the estate</p>
         </div>
       </div>
 
@@ -324,9 +327,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M12 11v11"/><path d="M6 2h12l-2 9a4 4 0 0 1-8 0Z"/><path d="M6 7h12"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">17:30</p>
-          <p class="programme-event">Welcome Drink</p>
-          <p class="programme-desc">Champagne cocktail while we wait</p>
+          <p class="programme-time">15:30</p>
+          <p class="programme-event" data-i18n="programme.drink.event">Welcome Drink</p>
+          <p class="programme-desc"  data-i18n="programme.drink.desc">Champagne cocktail while we wait</p>
         </div>
       </div>
 
@@ -335,9 +338,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="5"/><circle cx="16" cy="10" r="5"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">18:00</p>
-          <p class="programme-event">Ceremony</p>
-          <p class="programme-desc">The most special moment of the day</p>
+          <p class="programme-time">16:00</p>
+          <p class="programme-event" data-i18n="programme.ceremony.event">Ceremony</p>
+          <p class="programme-desc"  data-i18n="programme.ceremony.desc">The most special moment of the day</p>
         </div>
       </div>
 
@@ -346,9 +349,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M12 15v7"/><path d="M2 2l10 10 10-10"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">19:00</p>
-          <p class="programme-event">Cocktail Hour</p>
-          <p class="programme-desc">Appetisers &amp; drinks in the gardens</p>
+          <p class="programme-time">17:00</p>
+          <p class="programme-event" data-i18n="programme.cocktail.event">Cocktail Hour</p>
+          <p class="programme-desc"  data-i18n="programme.cocktail.desc">Appetisers &amp; drinks in the gardens</p>
         </div>
       </div>
 
@@ -357,9 +360,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">21:00</p>
-          <p class="programme-event">Banquet</p>
-          <p class="programme-desc">Dinner and celebration begins</p>
+          <p class="programme-time">19:00</p>
+          <p class="programme-event" data-i18n="programme.banquet.event">Banquet</p>
+          <p class="programme-desc"  data-i18n="programme.banquet.desc">Dinner and celebration begins</p>
         </div>
       </div>
 
@@ -368,9 +371,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">00:00</p>
-          <p class="programme-event">Party</p>
-          <p class="programme-desc">Dancing until dawn!</p>
+          <p class="programme-time">21:00</p>
+          <p class="programme-event" data-i18n="programme.party.event">Party</p>
+          <p class="programme-desc"  data-i18n="programme.party.desc">Dancing until dawn!</p>
         </div>
       </div>
 
@@ -379,9 +382,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </div>
         <div class="programme-item-text">
-          <p class="programme-time">03:00</p>
-          <p class="programme-event">Farewell</p>
-          <p class="programme-desc">Fond farewells &amp; memories forever</p>
+          <p class="programme-time">23:00</p>
+          <p class="programme-event" data-i18n="programme.farewell.event">Farewell</p>
+          <p class="programme-desc"  data-i18n="programme.farewell.desc">Fond farewells &amp; memories forever</p>
         </div>
       </div>
 
@@ -395,9 +398,9 @@
      ════════════════════════════════════════ -->
 <section id="accommodation" class="accommodation-section" aria-label="Accommodation recommendations">
   <div class="section-header">
-    <span class="section-label">Your stay</span>
-    <h2 class="section-title dark fade-in">Accommodation</h2>
-    <p class="section-subtitle fade-in fade-in-delay-1">Recommendations for your stay</p>
+    <span class="section-label" data-i18n="accom.label">Your stay</span>
+    <h2 class="section-title dark fade-in" data-i18n="accom.title">Accommodation</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="accom.subtitle">Recommendations for your stay</p>
   </div>
 
   <div class="hotel-grid hotel-grid-3">
@@ -406,9 +409,9 @@
         <img src="assets/images/luxury.jpg" alt="Luxury Room at Avianto" loading="lazy" class="hotel-img-photo" />
       </div>
       <div class="hotel-body">
-        <h3 class="hotel-name">Luxury Room</h3>
-        <p class="hotel-caption">Beautifully appointed rooms on-site at Avianto — comfort and elegance for your stay.</p>
-        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Luxury Room">See Details</a>
+        <h3 class="hotel-name" data-i18n="accom.luxury.name">Luxury Room</h3>
+        <p class="hotel-caption" data-i18n="accom.luxury.caption">Beautifully appointed rooms on-site at Avianto — comfort and elegance for your stay.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Luxury Room" data-i18n="accom.see-details">See Details</a>
       </div>
     </article>
 
@@ -417,9 +420,9 @@
         <img src="assets/images/suite.jpg" alt="Suite at Avianto" loading="lazy" class="hotel-img-photo" />
       </div>
       <div class="hotel-body">
-        <h3 class="hotel-name">Suite</h3>
-        <p class="hotel-caption">Spacious and refined suites offering a perfect blend of luxury and relaxation.</p>
-        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Suite">See Details</a>
+        <h3 class="hotel-name" data-i18n="accom.suite.name">Suite</h3>
+        <p class="hotel-caption" data-i18n="accom.suite.caption">Spacious and refined suites offering a perfect blend of luxury and relaxation.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Suite" data-i18n="accom.see-details">See Details</a>
       </div>
     </article>
 
@@ -428,9 +431,9 @@
         <img src="assets/images/presidential.jpg" alt="Presidential Suite at Avianto" loading="lazy" class="hotel-img-photo" />
       </div>
       <div class="hotel-body">
-        <h3 class="hotel-name">Presidential Suite</h3>
-        <p class="hotel-caption">The pinnacle of luxury — our most prestigious suite offering unmatched comfort and style.</p>
-        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Presidential Suite">See Details</a>
+        <h3 class="hotel-name" data-i18n="accom.presidential.name">Presidential Suite</h3>
+        <p class="hotel-caption" data-i18n="accom.presidential.caption">The pinnacle of luxury — our most prestigious suite offering unmatched comfort and style.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Presidential Suite" data-i18n="accom.see-details">See Details</a>
       </div>
     </article>
   </div>
@@ -442,19 +445,19 @@
      ════════════════════════════════════════ -->
 <section id="faq" class="faq-section" aria-label="Frequently asked questions">
   <div class="section-header">
-    <span class="section-label">Need to know</span>
-    <h2 class="section-title gold fade-in">Frequently Asked Questions</h2>
+    <span class="section-label" data-i18n="faq.label">Need to know</span>
+    <h2 class="section-title gold fade-in" data-i18n="faq.title">Frequently Asked Questions</h2>
   </div>
 
   <div class="faq-list" role="list">
 
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
-        Is parking available?
+        <span data-i18n="faq.q1">Is parking available?</span>
         <span class="faq-icon" aria-hidden="true">+</span>
       </button>
       <div id="faq-1" class="faq-answer" role="region">
-        <div class="faq-answer-inner">
+        <div class="faq-answer-inner" data-i18n="faq.a1">
           Yes! The venue has ample on-site parking. Follow the signs once you arrive at the estate entrance. If you need specific directions, don't hesitate to reach out to us.
         </div>
       </div>
@@ -462,11 +465,11 @@
 
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
-        What dress code should I follow?
+        <span data-i18n="faq.q2">What dress code should I follow?</span>
         <span class="faq-icon" aria-hidden="true">+</span>
       </button>
       <div id="faq-2" class="faq-answer" role="region">
-        <div class="faq-answer-inner">
+        <div class="faq-answer-inner" data-i18n="faq.a2">
           Our theme is "Royal Night in Crystal" — think black-tie elegance. Gentlemen: dark suits or tuxedos. Ladies: floor-length gowns or chic cocktail dresses. Colours we love: black, gold, white, and crystal tones. Leave the trainers at home!
         </div>
       </div>
@@ -474,11 +477,11 @@
 
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
-        Can I take photos during the ceremony?
+        <span data-i18n="faq.q3">Can I take photos during the ceremony?</span>
         <span class="faq-icon" aria-hidden="true">+</span>
       </button>
       <div id="faq-3" class="faq-answer" role="region">
-        <div class="faq-answer-inner">
+        <div class="faq-answer-inner" data-i18n="faq.a3">
           We kindly ask for an unplugged ceremony — please keep phones and cameras away during the vows. Our professional photographer and videographer will capture every moment. After the ceremony, snap away to your heart's content!
         </div>
       </div>
@@ -486,11 +489,11 @@
 
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
-        Will there be transport to and from the venue?
+        <span data-i18n="faq.q4">Will there be transport to and from the venue?</span>
         <span class="faq-icon" aria-hidden="true">+</span>
       </button>
       <div id="faq-4" class="faq-answer" role="region">
-        <div class="faq-answer-inner">
+        <div class="faq-answer-inner" data-i18n="faq.a4">
           We are arranging shuttle buses from the recommended hotels to the venue and back. Departure times will be shared closer to the date. If you're driving, designated drivers are heroes!
         </div>
       </div>
@@ -498,11 +501,11 @@
 
     <div class="faq-item" role="listitem">
       <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
-        Can I bring a plus-one?
+        <span data-i18n="faq.q5">Can I bring a plus-one?</span>
         <span class="faq-icon" aria-hidden="true">+</span>
       </button>
       <div id="faq-5" class="faq-answer" role="region">
-        <div class="faq-answer-inner">
+        <div class="faq-answer-inner" data-i18n="faq.a5">
           Due to limited capacity, we can only accommodate the guests named on the invitation. If you have any questions, please contact us directly.
         </div>
       </div>
@@ -517,13 +520,13 @@
      ════════════════════════════════════════ -->
 <section id="gifts" class="gifts-section" aria-label="Gifts">
   <div class="section-header">
-    <span class="section-label">With love</span>
-    <h2 class="section-title gold fade-in">Gifts</h2>
+    <span class="section-label" data-i18n="gifts.label">With love</span>
+    <h2 class="section-title gold fade-in" data-i18n="gifts.title">Gifts</h2>
     <div class="gold-divider fade-in fade-in-delay-1" aria-hidden="true">◆</div>
   </div>
 
   <div class="gifts-body fade-in">
-    <p class="gifts-quote">
+    <p class="gifts-quote" data-i18n="gifts.quote">
       "Your presence on our special day is the greatest gift we could ask for. However, if you wish to bless us with a gift, you may do so in whichever way feels most comfortable for you."
     </p>
 
@@ -531,40 +534,40 @@
       class="contribution-toggle"
       aria-expanded="false"
       aria-controls="contribution-panel">
-      ◆ &nbsp; Contribution
+      ◆ &nbsp; <span data-i18n="gifts.contribution">Contribution</span>
       <span class="faq-icon" aria-hidden="true">+</span>
     </button>
 
     <div id="contribution-panel" class="contribution-body" role="region">
       <div class="contribution-inner">
         <div class="bank-row">
-          <span class="bank-label">Bank</span>
+          <span class="bank-label" data-i18n="gifts.bank.label">Bank</span>
           <span class="bank-value">FNB / RMB</span>
         </div>
         <div class="bank-row">
-          <span class="bank-label">Account Holder</span>
+          <span class="bank-label" data-i18n="gifts.holder.label">Account Holder</span>
           <span class="bank-value">Benjamin Malemo</span>
         </div>
         <div class="bank-row">
-          <span class="bank-label">Account Type</span>
+          <span class="bank-label" data-i18n="gifts.type.label">Account Type</span>
           <span class="bank-value">FNB Aspire Current Account</span>
         </div>
         <div class="bank-row">
-          <span class="bank-label">Account Number</span>
+          <span class="bank-label" data-i18n="gifts.number.label">Account Number</span>
           <span class="bank-value">63109054914</span>
         </div>
         <div class="bank-row">
-          <span class="bank-label">Branch Code</span>
+          <span class="bank-label" data-i18n="gifts.branch.label">Branch Code</span>
           <span class="bank-value">250655</span>
         </div>
         <div class="bank-row">
-          <span class="bank-label">Reference</span>
+          <span class="bank-label" data-i18n="gifts.ref.label">Reference</span>
           <span class="bank-value">D&amp;S Wedding</span>
         </div>
-        <p class="bank-note">Thank you for your generosity and love 💛</p>
+        <p class="bank-note" data-i18n="gifts.note">Thank you for your generosity and love 💛</p>
         <button class="btn-copy" aria-label="Copy bank details to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Details
+          <span data-i18n="gifts.copy">Copy Details</span>
         </button>
       </div>
     </div>
@@ -578,9 +581,9 @@
 <section id="rsvp" class="rsvp-section" aria-label="RSVP — confirm your attendance">
   <div class="section-header">
     <img src="assets/images/rings.png" alt="Wedding rings" class="rsvp-rings-img" />
-    <span class="section-label">We hope to see you</span>
-    <h2 class="section-title gold fade-in">Confirm Your Attendance</h2>
-    <p class="section-subtitle fade-in fade-in-delay-1">We hope to count on you</p>
+    <span class="section-label" data-i18n="rsvp.label">We hope to see you</span>
+    <h2 class="section-title gold fade-in" data-i18n="rsvp.title">Confirm Your Attendance</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="rsvp.subtitle">We hope to count on you</p>
   </div>
 
   <!-- TODO: connect form action — Formspree / Netlify Forms / Google Sheets API -->
@@ -588,49 +591,59 @@
 
     <!-- Full Name -->
     <div class="form-group">
-      <label class="form-label" for="rsvp-name">Full Name <span aria-hidden="true">*</span></label>
+      <label class="form-label" for="rsvp-name">
+        <span data-i18n="rsvp.name.label">Full Name</span> <span aria-hidden="true">*</span>
+      </label>
       <input
         id="rsvp-name"
         class="form-input"
         type="text"
         name="name"
         placeholder="Your full name"
+        data-i18n-placeholder="rsvp.name.placeholder"
         required
         autocomplete="name" />
     </div>
 
     <!-- Email -->
     <div class="form-group">
-      <label class="form-label" for="rsvp-email">Email Address</label>
+      <label class="form-label" for="rsvp-email">
+        <span data-i18n="rsvp.email.label">Email Address</span>
+      </label>
       <input
         id="rsvp-email"
         class="form-input"
         type="email"
         name="email"
         placeholder="your@email.com"
+        data-i18n-placeholder="rsvp.email.placeholder"
         autocomplete="email" />
     </div>
 
     <!-- Attendance -->
     <div class="form-group">
-      <span class="form-label" id="attend-label">Will you attend? <span aria-hidden="true">*</span></span>
+      <span class="form-label" id="attend-label">
+        <span data-i18n="rsvp.attend.label">Will you attend?</span> <span aria-hidden="true">*</span>
+      </span>
       <div class="radio-group" role="radiogroup" aria-labelledby="attend-label">
         <label class="radio-option">
           <input type="radio" id="attend-yes" name="attendance" value="yes" required />
           <span class="radio-custom" aria-hidden="true"></span>
-          <span class="radio-label">Yes, I will attend ✨</span>
+          <span class="radio-label" data-i18n="rsvp.attend.yes">Yes, I will attend ✨</span>
         </label>
         <label class="radio-option">
           <input type="radio" id="attend-no" name="attendance" value="no" />
           <span class="radio-custom" aria-hidden="true"></span>
-          <span class="radio-label">I won't be able to attend</span>
+          <span class="radio-label" data-i18n="rsvp.attend.no">I won't be able to attend</span>
         </label>
       </div>
     </div>
 
     <!-- Guest Count (conditional) -->
     <div class="form-group guests-field">
-      <label class="form-label" for="rsvp-guests">Number of guests (including yourself)</label>
+      <label class="form-label" for="rsvp-guests">
+        <span data-i18n="rsvp.guests.label">Number of guests (including yourself)</span>
+      </label>
       <input
         id="rsvp-guests"
         class="form-input"
@@ -644,63 +657,71 @@
 
     <!-- Allergies checkboxes -->
     <div class="form-group">
-      <span class="form-label" id="allergy-label">Food allergies &amp; intolerances</span>
+      <span class="form-label" id="allergy-label">
+        <span data-i18n="rsvp.allergy.label">Food allergies &amp; intolerances</span>
+      </span>
       <div class="checkbox-grid" role="group" aria-labelledby="allergy-label">
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="gluten" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Gluten-free / Coeliac</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.gluten">Gluten-free / Coeliac</span>
         </label>
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="lactose" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Lactose-free</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.lactose">Lactose-free</span>
         </label>
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="vegetarian" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Vegetarian</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.vegetarian">Vegetarian</span>
         </label>
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="vegan" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Vegan</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.vegan">Vegan</span>
         </label>
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="nuts" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Nut allergy</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.nuts">Nut allergy</span>
         </label>
         <label class="checkbox-option">
           <input type="checkbox" name="allergy" value="seafood" />
           <span class="checkbox-custom" aria-hidden="true"></span>
-          <span class="checkbox-label">Seafood allergy</span>
+          <span class="checkbox-label" data-i18n="rsvp.allergy.seafood">Seafood allergy</span>
         </label>
       </div>
     </div>
 
     <!-- Other allergies -->
     <div class="form-group">
-      <label class="form-label" for="rsvp-other-allergy">Other allergies or restrictions</label>
+      <label class="form-label" for="rsvp-other-allergy">
+        <span data-i18n="rsvp.other.label">Other allergies or restrictions</span>
+      </label>
       <input
         id="rsvp-other-allergy"
         class="form-input"
         type="text"
         name="other_allergy"
-        placeholder="e.g., egg allergy, fructose intolerance…" />
+        placeholder="e.g., egg allergy, fructose intolerance…"
+        data-i18n-placeholder="rsvp.other.placeholder" />
     </div>
 
     <!-- Message -->
     <div class="form-group">
-      <label class="form-label" for="rsvp-message">Message to the couple</label>
+      <label class="form-label" for="rsvp-message">
+        <span data-i18n="rsvp.message.label">Message to the couple</span>
+      </label>
       <textarea
         id="rsvp-message"
         class="form-textarea"
         name="message"
-        placeholder="Write us a few words…"></textarea>
+        placeholder="Write us a few words…"
+        data-i18n-placeholder="rsvp.message.placeholder"></textarea>
     </div>
 
-    <button type="submit" class="btn-submit">Send Confirmation</button>
+    <button type="submit" class="btn-submit" data-i18n="rsvp.submit">Send Confirmation</button>
 
   </form>
 </section>
@@ -710,11 +731,11 @@
      FOOTER
      ════════════════════════════════════════ -->
 <footer class="footer" role="contentinfo">
-  <span class="footer-names">Dorcas &amp; Samie</span>
-  <span class="footer-date">27 December 2026</span>
+  <span class="footer-names">Dorcas &amp; Samuel</span>
+  <span class="footer-date">26 December 2026</span>
   <div class="gold-divider" aria-hidden="true">◆</div>
-  <span class="footer-love">Made with love</span>
-  <span class="footer-copy">&copy; 2027 Dorcas &amp; Samie. All rights reserved.</span>
+  <span class="footer-love" data-i18n="footer.love">Made with love</span>
+  <span class="footer-copy" data-i18n="footer.rights">&copy; 2027 Dorcas &amp; Samuel. All rights reserved.</span>
 </footer>
 
 
@@ -726,7 +747,7 @@
     <span class="modal-icon" aria-hidden="true">💍</span>
     <h2 id="modal-title-id" class="modal-title">Thank you!</h2>
     <p id="modal-msg-id" class="modal-message"></p>
-    <button class="modal-close" autofocus>Close</button>
+    <button class="modal-close" autofocus data-i18n="modal.close">Close</button>
   </div>
 </div>
 

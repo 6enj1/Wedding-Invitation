@@ -383,6 +383,24 @@ ul { list-style: none; }
   gap: 1.5rem;
 }
 
+.lang-toggle {
+  background: none;
+  border: 1px solid #C9A84C;
+  color: #C9A84C;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 4px 9px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.lang-toggle:hover {
+  background: #C9A84C;
+  color: #0a0a0a;
+}
+
 .music-toggle {
   background: none;
   border: none;
