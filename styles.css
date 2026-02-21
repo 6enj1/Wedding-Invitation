@@ -1280,6 +1280,15 @@ ul { list-style: none; }
   pointer-events: none;
 }
 
+.rsvp-rings-img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 0 auto 0.75rem;
+  opacity: 0.9;
+}
+
 .rsvp-form {
   max-width: 640px;
   margin: 0 auto;

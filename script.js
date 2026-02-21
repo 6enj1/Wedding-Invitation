@@ -35,7 +35,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   // Minimum 1.5 s so bar animation is visible, then show cover
   setTimeout(showCover, 1500);
 
-  // ── Step 2: user taps cover image → fade it, play video ───────
+  // ── Step 2: user taps cover image → fade it, play video + audio ──
   cover.addEventListener('click', () => {
     cover.classList.add('fade-out');
     cover.addEventListener('transitionend', () => cover.remove(), { once: true });
@@ -43,6 +43,22 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     // load() + play() inside the tap gesture — satisfies iOS policy
     video.load();
     video.play().catch(() => {});
+
+    // Start background audio (loop is set on the element)
+    const audio   = $('#bg-music');
+    const iconOn  = $('#icon-speaker-on');
+    const iconOff = $('#icon-speaker-off');
+    const musicBtn = $('.music-toggle');
+    if (audio) {
+      audio.volume = 0.3;
+      audio.play().catch(() => {});
+      if (musicBtn && iconOn && iconOff) {
+        iconOn.style.display  = 'block';
+        iconOff.style.display = 'none';
+        musicBtn.classList.add('playing');
+        musicBtn.setAttribute('aria-label', 'Mute background music');
+      }
+    }
   });
 
   // ── Step 3: video ends → fade out splash, reveal site ─────────
@@ -422,27 +438,21 @@ function downloadICS() {
   const audio   = $('#bg-music');
   const iconOn  = $('#icon-speaker-on');
   const iconOff = $('#icon-speaker-off');
-  const pulse   = btn.querySelector('.pulse-ring');
 
   if (!btn || !audio) return;
 
-  // Start muted; let user toggle
-  let playing = false;
-
   btn.addEventListener('click', () => {
-    if (!playing) {
+    if (audio.paused) {
       audio.play().then(() => {
-        playing = true;
         iconOn.style.display  = 'block';
         iconOff.style.display = 'none';
         btn.classList.add('playing');
         btn.setAttribute('aria-label', 'Mute background music');
       }).catch(() => {
-        showToast('Music unavailable — add background.mp3');
+        showToast('Music unavailable');
       });
     } else {
       audio.pause();
-      playing = false;
       iconOn.style.display  = 'none';
       iconOff.style.display = 'block';
       btn.classList.remove('playing');
