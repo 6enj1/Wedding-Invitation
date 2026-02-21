@@ -260,6 +260,20 @@
     .msg-cell  { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .diet-cell { max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+    .btn-delete {
+      background: none;
+      border: 1px solid rgba(224,92,92,0.3);
+      border-radius: 4px;
+      color: var(--red);
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      transition: background 0.2s, border-color 0.2s;
+      opacity: 0.6;
+    }
+    .btn-delete:hover { background: rgba(224,92,92,0.15); border-color: var(--red); opacity: 1; }
+    tr:hover .btn-delete { opacity: 1; }
+
     @media (max-width: 768px) {
       main { padding: 1rem; }
       header { padding: 1rem; }
@@ -336,7 +350,8 @@
   const ADMIN_KEY       = 'dorcas-samuel-2026'; // must match google-apps-script.js
   const ADMIN_PASSWORD  = 'dorcas2026';         // ← change this to your own password
 
-  let allRows   = [];
+  let allRows    = [];
+  let allRowNums = []; // sheet row numbers (2-based, header is row 1)
   let activeFilter = 'all';
 
   /* ── LOGIN ── */
@@ -392,7 +407,8 @@
           `<div class="empty-state">⚠️ ${json.error || 'Failed to load'}</div>`;
         return;
       }
-      allRows = json.data.slice(1); // skip header row
+      allRows    = json.data.slice(1); // skip header row
+      allRowNums = allRows.map((_, i) => i + 2); // sheet row 2, 3, 4…
       updateStats();
       renderTable();
     };
@@ -430,7 +446,8 @@
   function renderTable() {
     const query = document.getElementById('search').value.toLowerCase();
 
-    let rows = allRows.filter(r => {
+    // Pair each row with its sheet row number, then filter
+    let pairs = allRows.map((r, i) => ({ r, sheetRow: allRowNums[i] })).filter(({ r }) => {
       const name  = String(r[1]).toLowerCase();
       const email = String(r[2]).toLowerCase();
       const matchSearch = !query || name.includes(query) || email.includes(query);
@@ -444,7 +461,7 @@
       return matchSearch && matchFilter;
     });
 
-    if (!rows.length) {
+    if (!pairs.length) {
       document.getElementById('table-wrap').innerHTML =
         '<div class="empty-state">No guests found.</div>';
       return;
@@ -462,10 +479,11 @@
             <th class="td-hide">Dietary</th>
             <th class="td-hide">Message</th>
             <th class="td-hide">Submitted</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          ${rows.map((r, i) => `
+          ${pairs.map(({ r, sheetRow }, i) => `
             <tr>
               <td class="timestamp">${i + 1}</td>
               <td><strong>${esc(r[1])}</strong></td>
@@ -483,12 +501,35 @@
               <td class="td-hide diet-cell">${esc([r[5], r[6]].filter(Boolean).join(', ')) || '—'}</td>
               <td class="td-hide msg-cell" title="${esc(r[7])}">${esc(r[7]) || '—'}</td>
               <td class="td-hide timestamp">${esc(r[0])}</td>
+              <td><button class="btn-delete" onclick="deleteGuest(${sheetRow}, '${esc(r[1])}')">✕ Remove</button></td>
             </tr>
           `).join('')}
         </tbody>
       </table>`;
 
     document.getElementById('table-wrap').innerHTML = html;
+  }
+
+  /* ── DELETE GUEST ── */
+  function deleteGuest(sheetRow, name) {
+    if (!confirm(`Remove "${name}" from the guest list?`)) return;
+
+    const cbName = 'deleteCb_' + Date.now();
+    const url    = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&action=delete&row=${sheetRow}&callback=${cbName}`;
+    const script = document.createElement('script');
+    script.src   = url;
+
+    window[cbName] = function(json) {
+      delete window[cbName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+      if (json.success) {
+        loadData(); // refresh the list
+      } else {
+        alert('Could not remove guest: ' + (json.error || 'unknown error'));
+      }
+    };
+
+    document.head.appendChild(script);
   }
 
   /* ── EXPORT CSV ── */

@@ -33,8 +33,18 @@ function doGet(e) {
   }
 
   const sheet = getOrCreateSheet();
-  const rows  = sheet.getDataRange().getValues();
 
+  // Delete a row by sheet row number
+  if (e.parameter.action === 'delete') {
+    const rowNum = parseInt(e.parameter.row);
+    if (!rowNum || rowNum < 2) {
+      return respond({ success: false, error: 'Invalid row' }, callback);
+    }
+    sheet.deleteRow(rowNum);
+    return respond({ success: true }, callback);
+  }
+
+  const rows = sheet.getDataRange().getValues();
   return respond({ success: true, data: rows }, callback);
 }
 
