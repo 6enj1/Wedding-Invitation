@@ -274,6 +274,66 @@
     .btn-delete:hover { background: rgba(224,92,92,0.15); border-color: var(--red); opacity: 1; }
     tr:hover .btn-delete { opacity: 1; }
 
+    /* ── CONFIRM MODAL ── */
+    .confirm-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .confirm-overlay.open { display: flex; }
+    .confirm-box {
+      background: #1e1e2e;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      max-width: 380px;
+      width: 90%;
+      padding: 2rem;
+      text-align: center;
+    }
+    .confirm-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .confirm-box p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .confirm-box strong { color: var(--white); }
+    .confirm-actions { display: flex; gap: 0.75rem; justify-content: center; }
+    .confirm-cancel {
+      background: none;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      padding: 0.6rem 1.2rem;
+      transition: all 0.2s;
+    }
+    .confirm-cancel:hover { border-color: #666; color: var(--white); }
+    .confirm-remove {
+      background: var(--red);
+      border: none;
+      border-radius: 6px;
+      color: var(--white);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      transition: opacity 0.2s;
+    }
+    .confirm-remove:hover { opacity: 0.85; }
+
     @media (max-width: 768px) {
       main { padding: 1rem; }
       header { padding: 1rem; }
@@ -292,6 +352,18 @@
     <button type="submit" id="login-btn">Enter</button>
     <p id="login-error">Incorrect password. Please try again.</p>
   </form>
+</div>
+
+<!-- ── CONFIRM MODAL ── -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h3>Remove Guest</h3>
+    <p>Are you sure you want to remove <strong id="confirm-name"></strong> from the guest list?</p>
+    <div class="confirm-actions">
+      <button class="confirm-cancel" onclick="closeConfirm()">Cancel</button>
+      <button class="confirm-remove" id="confirm-remove-btn">Remove</button>
+    </div>
+  </div>
 </div>
 
 <!-- ── DASHBOARD ── -->
@@ -386,7 +458,7 @@
 
     const cbName = 'rsvpCb_' + Date.now();
     const script = document.createElement('script');
-    script.src   = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&callback=${cbName}`;
+    script.src   = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&callback=${cbName}&t=${Date.now()}`;
 
     const timer = setTimeout(() => {
       cleanup();
@@ -510,27 +582,48 @@
     document.getElementById('table-wrap').innerHTML = html;
   }
 
-  /* ── DELETE GUEST ── */
+  /* ── CONFIRM MODAL ── */
+  let pendingDeleteRow  = null;
+  let pendingDeleteName = null;
+
   function deleteGuest(sheetRow, name) {
-    if (!confirm(`Remove "${name}" from the guest list?`)) return;
+    pendingDeleteRow  = sheetRow;
+    pendingDeleteName = name;
+    document.getElementById('confirm-name').textContent = name;
+    document.getElementById('confirm-overlay').classList.add('open');
+  }
+
+  function closeConfirm() {
+    document.getElementById('confirm-overlay').classList.remove('open');
+    pendingDeleteRow  = null;
+    pendingDeleteName = null;
+  }
+
+  document.getElementById('confirm-remove-btn').addEventListener('click', function () {
+    if (!pendingDeleteRow) return;
+    const sheetRow = pendingDeleteRow;
+    closeConfirm();
 
     const cbName = 'deleteCb_' + Date.now();
-    const url    = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&action=delete&row=${sheetRow}&callback=${cbName}`;
+    const url    = `${APPS_SCRIPT_URL}?key=${ADMIN_KEY}&action=delete&row=${sheetRow}&callback=${cbName}&t=${Date.now()}`;
     const script = document.createElement('script');
     script.src   = url;
 
-    window[cbName] = function(json) {
+    window[cbName] = function (json) {
       delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
       if (json.success) {
-        loadData(); // refresh the list
-      } else {
-        alert('Could not remove guest: ' + (json.error || 'unknown error'));
+        loadData(); // refresh with cache-buster
       }
     };
 
     document.head.appendChild(script);
-  }
+  });
+
+  // Close modal when clicking outside
+  document.getElementById('confirm-overlay').addEventListener('click', function (e) {
+    if (e.target === this) closeConfirm();
+  });
 
   /* ── EXPORT CSV ── */
   function exportCSV() {
