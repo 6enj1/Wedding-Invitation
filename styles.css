@@ -137,6 +137,7 @@
 }
 
 .intro-cover-hint {
+  display: none;
   position: absolute;
   bottom: 2.5rem;
   left: 50%;
