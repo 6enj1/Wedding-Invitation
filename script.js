@@ -11,40 +11,41 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    0. LOADING SCREEN + INTRO VIDEO SPLASH
    ────────────────────────────────────────── */
 (function initIntro() {
-  const loader      = $('#loading-screen');
-  const splash      = $('#intro-splash');
+  const loader       = $('#loading-screen');
+  const cover        = $('#intro-cover');
+  const splash       = $('#intro-splash');
   const videoDesktop = $('#intro-video');
   const videoMobile  = $('#intro-video-mobile');
-  if (!splash || !loader) return;
-
-  // Pick the active video based on screen width
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  const video    = isMobile ? videoMobile : videoDesktop;
+  if (!cover || !splash || !loader) return;
 
   // Lock scroll for the whole intro sequence
   document.body.style.overflow = 'hidden';
 
-  function hideLoader() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const video    = isMobile ? videoMobile : videoDesktop;
+
+  // ── Step 1: hide loading screen once images are ready (fast) ──
+  // Images load much faster than video — use a short minimum delay
+  // so the loading animation is visible, then reveal cover image.
+  function showCover() {
     loader.classList.add('hidden');
     loader.addEventListener('transitionend', () => loader.remove(), { once: true });
   }
 
-  // Hide loader once active video has enough data
-  if (video.readyState >= 3) {
-    hideLoader();
-  } else {
-    video.addEventListener('canplay', hideLoader, { once: true });
-    setTimeout(hideLoader, 6000);
-  }
+  // Minimum 1.5 s so bar animation is visible, then show cover
+  setTimeout(showCover, 1500);
 
-  // Click anywhere → play active video
-  splash.addEventListener('click', () => {
-    if (video.paused) {
-      video.play().catch(() => {});
-    }
+  // ── Step 2: user taps cover image → fade it, play video ───────
+  cover.addEventListener('click', () => {
+    cover.classList.add('fade-out');
+    cover.addEventListener('transitionend', () => cover.remove(), { once: true });
+
+    // load() + play() inside the tap gesture — satisfies iOS policy
+    video.load();
+    video.play().catch(() => {});
   });
 
-  // Video ends → fade out splash, unlock scroll, reveal site
+  // ── Step 3: video ends → fade out splash, reveal site ─────────
   video.addEventListener('ended', () => {
     splash.classList.add('fade-out');
     document.body.style.overflow = '';

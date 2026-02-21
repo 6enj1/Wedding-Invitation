@@ -95,19 +95,70 @@
   width: 0%;
   background: linear-gradient(to right, var(--gold), var(--light-gold));
   border-radius: 2px;
-  animation: bar-fill 3s ease-out forwards;
+  animation: bar-fill 3.5s ease-out forwards;
 }
 @keyframes bar-fill {
   0%   { width: 0%; }
-  60%  { width: 75%; }
-  100% { width: 95%; }
+  70%  { width: 80%; }
+  100% { width: 96%; }
+}
+
+/* ── Intro Cover Image ── */
+.intro-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s ease;
+}
+.intro-cover.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-cover-desktop { display: block; }
+.intro-cover-mobile  { display: none; }
+
+@media (max-width: 768px) {
+  .intro-cover-desktop { display: none; }
+  .intro-cover-mobile  { display: block; }
+}
+
+.intro-cover-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: bounce-chevron 1.6s ease-in-out infinite;
+}
+.intro-cover-hint svg {
+  width: 32px; height: 32px;
+  filter: drop-shadow(0 0 8px rgba(201,168,76,0.6));
+}
+
+@keyframes bounce-chevron {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
 }
 
 /* ── Intro Video Splash ── */
 .intro-splash {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 9998;
   background: #000;
   cursor: pointer;
   transition: opacity 0.9s ease;
