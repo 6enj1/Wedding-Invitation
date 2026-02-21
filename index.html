@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorcas &amp; Samie — 27 December 2026 | Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to the wedding celebration of Dorcas &amp; Samie on 27 December 2026. RSVP and find all the details here." />
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Dorcas &amp; Samie's Wedding — 27 December 2026" />
+  <meta property="og:description" content="Join us for a Royal Night in Crystal. Confirm your attendance and find everything you need to know." />
+  <meta property="og:image"       content="assets/images/og-cover.jpg" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     LOADING SCREEN
+     ════════════════════════════════════════ -->
+<div id="loading-screen" class="loading-screen">
+  <div class="loading-content">
+    <div class="loading-monogram">D &amp; S</div>
+    <div class="loading-label">
+      Loading<span class="dot dot-1">.</span><span class="dot dot-2">.</span><span class="dot dot-3">.</span>
+    </div>
+    <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     INTRO VIDEO SPLASH
+     ════════════════════════════════════════ -->
+<div id="intro-splash" class="intro-splash">
+  <video id="intro-video" class="intro-video intro-video-desktop" preload="auto" playsinline>
+    <source src="assets/images/Desktop.mov" type="video/mp4" />
+  </video>
+  <video id="intro-video-mobile" class="intro-video intro-video-mobile" preload="auto" playsinline>
+    <source src="assets/images/mobile.mov" type="video/mp4" />
+  </video>
+</div>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+     ════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="Dorcas and Samie — go to top">D &amp; S</a>
+
+  <div class="nav-right">
+    <!-- Desktop links -->
+    <div class="nav-links" role="list">
+      <a href="#story" role="listitem">Our Story</a>
+      <a href="#details" role="listitem">Details</a>
+      <a href="#programme" role="listitem">Programme</a>
+      <a href="#rsvp" role="listitem">RSVP</a>
+    </div>
+
+    <!-- Music Toggle -->
+    <button class="music-toggle" aria-label="Play background music" title="Toggle music">
+      <span class="pulse-ring" aria-hidden="true"></span>
+      <svg id="icon-speaker-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      </svg>
+      <svg id="icon-speaker-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+    </button>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" role="dialog" aria-label="Mobile navigation">
+  <a href="#story">Our Story</a>
+  <a href="#details">Details</a>
+  <a href="#programme">Programme</a>
+  <a href="#accommodation">Accommodation</a>
+  <a href="#faq">FAQ</a>
+  <a href="#rsvp">RSVP</a>
+</div>
+
+<!-- Background Audio -->
+<audio id="bg-music" loop preload="none">
+  <source src="assets/audio/background.mp3" type="audio/mpeg" />
+</audio>
+
+<!-- Toast Notification -->
+<div class="toast" role="status" aria-live="polite"></div>
+
+
+<!-- ════════════════════════════════════════
+     1. HERO SECTION
+     ════════════════════════════════════════ -->
+<section id="hero" class="hero" aria-label="Wedding invitation hero">
+  <video class="hero-bg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/images/8805b80d-fd5f-4d34-8cd4-c0acff504dec.mov" type="video/mp4" />
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <span class="hero-label">Together with their families</span>
+
+    <span class="hero-name">Dorcas</span>
+    <span class="hero-ampersand">&amp;</span>
+    <span class="hero-name">Samie</span>
+
+    <div class="gold-divider" aria-hidden="true">◆</div>
+
+    <span class="hero-date">27 December 2026</span>
+  </div>
+
+  <div class="hero-bottom">
+    <a href="#rsvp" class="hero-tagline-bottom" aria-label="Confirm your attendance">
+      Request the honour of your presence at their wedding celebration
+    </a>
+    <a href="#rsvp" class="hero-chevron" aria-label="Scroll down to confirm attendance">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     2. COUNTDOWN
+     ════════════════════════════════════════ -->
+<section id="countdown" class="countdown-section" aria-label="Countdown to the wedding">
+  <div class="section-header">
+    <h2 class="section-title gold fade-in">Counting Down</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">To the most special day of our lives</p>
+  </div>
+
+  <div class="countdown-grid" role="timer" aria-label="Time until the wedding">
+    <div class="glass-card countdown-box fade-in fade-in-delay-1">
+      <span id="countdown-days"   class="countdown-number">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="glass-card countdown-box fade-in fade-in-delay-2">
+      <span id="countdown-hours"  class="countdown-number">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="glass-card countdown-box fade-in fade-in-delay-3">
+      <span id="countdown-minutes" class="countdown-number">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="glass-card countdown-box fade-in fade-in-delay-4">
+      <span id="countdown-seconds" class="countdown-number">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     3. OUR STORY (Optional)
+     ════════════════════════════════════════ -->
+<!-- Optional: Our Story -->
+<section id="story" class="story-section" aria-label="Our story">
+  <div class="section-header">
+    <span class="section-label">How it all began</span>
+    <h2 class="section-title dark fade-in">Our Story</h2>
+    <div class="gold-divider fade-in fade-in-delay-1" aria-hidden="true">◆</div>
+  </div>
+
+  <div class="timeline" role="list">
+    <article class="timeline-item fade-in" role="listitem">
+      <div class="timeline-node" aria-hidden="true"></div>
+      <div class="timeline-card">
+        <h3>When We Met</h3>
+        <p>Every great love story has a beginning — ours was no different. Two paths crossed at just the right moment, and nothing was ever the same again.</p>
+      </div>
+    </article>
+
+    <article class="timeline-item fade-in fade-in-delay-1" role="listitem">
+      <div class="timeline-node" aria-hidden="true"></div>
+      <div class="timeline-card">
+        <h3>The First Date</h3>
+        <p>Laughter, good food, and a conversation that never seemed to end. That evening, we both knew something very special had started.</p>
+      </div>
+    </article>
+
+    <article class="timeline-item fade-in fade-in-delay-2" role="listitem">
+      <div class="timeline-node" aria-hidden="true"></div>
+      <div class="timeline-card">
+        <h3>The Proposal</h3>
+        <p>Under a sky full of stars, with hearts full of love, came the question that would set us on the path to forever. She said yes. ◆</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     4. DAY DETAILS
+     ════════════════════════════════════════ -->
+<section id="details" class="details-section" aria-label="Details of the day">
+  <div class="section-header">
+    <span class="section-label">Mark your calendar</span>
+    <h2 class="section-title gold fade-in">Details of the Day</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">Everything you need to know</p>
+  </div>
+
+  <div class="glass-card details-card fade-in">
+    <p class="venue-name">Avianto</p>
+    <p class="venue-address">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      69 R114, Muldersdrift, 1747
+    </p>
+    <p class="venue-time">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      From 17:00 to 03:00 · 27 December 2026
+    </p>
+
+    <div class="venue-image-wrap">
+      <img
+        src="assets/images/medium-banner-2-1.jpg"
+        alt="Avianto wedding venue"
+        class="venue-image"
+        loading="lazy" />
+    </div>
+
+    <div class="map-wrapper" aria-label="Map showing the venue location">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.2!2d27.9!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e957a3b2e2e2e2e%3A0x0!2sAvianto%2C+69+R114%2C+Muldersdrift%2C+1747!5e0!3m2!1sen!2sza!4v1234567890"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Avianto venue location map"
+        style="width:100%;height:100%;border:0">
+      </iframe>
+    </div>
+
+    <div class="details-buttons">
+      <a
+        href="https://maps.google.com/?q=Avianto+69+R114+Muldersdrift+1747"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold"
+        aria-label="Open venue in Google Maps">
+        &#x1F5FA; Open in Maps
+      </a>
+      <button class="btn-outline-gold" onclick="downloadICS()" aria-label="Add wedding to your calendar">
+        &#x1F4C5; Add to Calendar
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     5. PROGRAMME OF THE DAY
+     ════════════════════════════════════════ -->
+<section id="programme" class="programme-section" aria-label="Programme of the day">
+  <div class="programme-hero-img fade-in">
+    <img
+      src="assets/images/dance.png"
+      alt="Guests dancing and celebrating at the wedding"
+      loading="lazy"
+      onerror="this.parentElement.classList.add('img-missing')" />
+  </div>
+
+  <div class="section-header">
+    <span class="section-label">The celebration</span>
+    <h2 class="section-title gold fade-in">Programme of the Day</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">What we have prepared for you</p>
+  </div>
+
+  <div class="programme-timeline">
+    <div class="programme-track">
+
+      <div class="programme-item fade-in">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">17:00</p>
+          <p class="programme-event">Arrival</p>
+          <p class="programme-desc">Reception &amp; welcome at the estate</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in fade-in-delay-1">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M12 11v11"/><path d="M6 2h12l-2 9a4 4 0 0 1-8 0Z"/><path d="M6 7h12"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">17:30</p>
+          <p class="programme-event">Welcome Drink</p>
+          <p class="programme-desc">Champagne cocktail while we wait</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in fade-in-delay-2">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="5"/><circle cx="16" cy="10" r="5"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">18:00</p>
+          <p class="programme-event">Ceremony</p>
+          <p class="programme-desc">The most special moment of the day</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in fade-in-delay-3">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M12 15v7"/><path d="M2 2l10 10 10-10"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">19:00</p>
+          <p class="programme-event">Cocktail Hour</p>
+          <p class="programme-desc">Appetisers &amp; drinks in the gardens</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">21:00</p>
+          <p class="programme-event">Banquet</p>
+          <p class="programme-desc">Dinner and celebration begins</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in fade-in-delay-1">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">00:00</p>
+          <p class="programme-event">Party</p>
+          <p class="programme-desc">Dancing until dawn!</p>
+        </div>
+      </div>
+
+      <div class="programme-item fade-in fade-in-delay-2">
+        <div class="programme-node" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <div class="programme-item-text">
+          <p class="programme-time">03:00</p>
+          <p class="programme-event">Farewell</p>
+          <p class="programme-desc">Fond farewells &amp; memories forever</p>
+        </div>
+      </div>
+
+    </div><!-- /.programme-track -->
+  </div><!-- /.programme-timeline -->
+</section>
+
+
+<!-- ════════════════════════════════════════
+     6. ACCOMMODATION
+     ════════════════════════════════════════ -->
+<section id="accommodation" class="accommodation-section" aria-label="Accommodation recommendations">
+  <div class="section-header">
+    <span class="section-label">Your stay</span>
+    <h2 class="section-title dark fade-in">Accommodation</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">Recommendations for your stay</p>
+  </div>
+
+  <div class="hotel-grid hotel-grid-3">
+    <article class="hotel-card fade-in">
+      <div class="hotel-img-wrap">
+        <img src="assets/images/luxury.jpg" alt="Luxury Room at Avianto" loading="lazy" class="hotel-img-photo" />
+      </div>
+      <div class="hotel-body">
+        <h3 class="hotel-name">Luxury Room</h3>
+        <p class="hotel-caption">Beautifully appointed rooms on-site at Avianto — comfort and elegance for your stay.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Luxury Room">See Details</a>
+      </div>
+    </article>
+
+    <article class="hotel-card fade-in fade-in-delay-1">
+      <div class="hotel-img-wrap">
+        <img src="assets/images/suite.jpg" alt="Suite at Avianto" loading="lazy" class="hotel-img-photo" />
+      </div>
+      <div class="hotel-body">
+        <h3 class="hotel-name">Suite</h3>
+        <p class="hotel-caption">Spacious and refined suites offering a perfect blend of luxury and relaxation.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Suite">See Details</a>
+      </div>
+    </article>
+
+    <article class="hotel-card fade-in fade-in-delay-2">
+      <div class="hotel-img-wrap">
+        <img src="assets/images/presidential.jpg" alt="Presidential Suite at Avianto" loading="lazy" class="hotel-img-photo" />
+      </div>
+      <div class="hotel-body">
+        <h3 class="hotel-name">Presidential Suite</h3>
+        <p class="hotel-caption">The pinnacle of luxury — our most prestigious suite offering unmatched comfort and style.</p>
+        <a href="https://www.avianto.co.za/hotel/" class="btn-outline-gold" target="_blank" rel="noopener noreferrer" aria-label="See details for Presidential Suite">See Details</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     7. FAQ
+     ════════════════════════════════════════ -->
+<section id="faq" class="faq-section" aria-label="Frequently asked questions">
+  <div class="section-header">
+    <span class="section-label">Need to know</span>
+    <h2 class="section-title gold fade-in">Frequently Asked Questions</h2>
+  </div>
+
+  <div class="faq-list" role="list">
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+        Is parking available?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="faq-1" class="faq-answer" role="region">
+        <div class="faq-answer-inner">
+          Yes! The venue has ample on-site parking. Follow the signs once you arrive at the estate entrance. If you need specific directions, don't hesitate to reach out to us.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+        What dress code should I follow?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="faq-2" class="faq-answer" role="region">
+        <div class="faq-answer-inner">
+          Our theme is "Royal Night in Crystal" — think black-tie elegance. Gentlemen: dark suits or tuxedos. Ladies: floor-length gowns or chic cocktail dresses. Colours we love: black, gold, white, and crystal tones. Leave the trainers at home!
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+        Can I take photos during the ceremony?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="faq-3" class="faq-answer" role="region">
+        <div class="faq-answer-inner">
+          We kindly ask for an unplugged ceremony — please keep phones and cameras away during the vows. Our professional photographer and videographer will capture every moment. After the ceremony, snap away to your heart's content!
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+        Will there be transport to and from the venue?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="faq-4" class="faq-answer" role="region">
+        <div class="faq-answer-inner">
+          We are arranging shuttle buses from the recommended hotels to the venue and back. Departure times will be shared closer to the date. If you're driving, designated drivers are heroes!
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+        Can I bring a plus-one?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="faq-5" class="faq-answer" role="region">
+        <div class="faq-answer-inner">
+          Due to limited capacity, we can only accommodate the guests named on the invitation. If you have any questions, please contact us directly.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     8. GIFTS
+     ════════════════════════════════════════ -->
+<section id="gifts" class="gifts-section" aria-label="Gifts">
+  <div class="section-header">
+    <span class="section-label">With love</span>
+    <h2 class="section-title gold fade-in">Gifts</h2>
+    <div class="gold-divider fade-in fade-in-delay-1" aria-hidden="true">◆</div>
+  </div>
+
+  <div class="gifts-body fade-in">
+    <p class="gifts-quote">
+      "Your presence on our special day is the greatest gift we could ask for. However, if you wish to bless us with a gift, you may do so in whichever way feels most comfortable for you."
+    </p>
+
+    <button
+      class="contribution-toggle"
+      aria-expanded="false"
+      aria-controls="contribution-panel">
+      ◆ &nbsp; Contribution
+      <span class="faq-icon" aria-hidden="true">+</span>
+    </button>
+
+    <div id="contribution-panel" class="contribution-body" role="region">
+      <div class="contribution-inner">
+        <div class="bank-row">
+          <span class="bank-label">Bank</span>
+          <span class="bank-value">[Bank Name]</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Holder</span>
+          <span class="bank-value">Dorcas &amp; Samie</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Number</span>
+          <span class="bank-value">XXXX-XXXX-XXXX-XXXX</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Sort Code / IBAN</span>
+          <span class="bank-value">XX-XX-XX</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Reference</span>
+          <span class="bank-value">D&amp;S Wedding</span>
+        </div>
+        <p class="bank-note">Thank you for your generosity and love 💛</p>
+        <button class="btn-copy" aria-label="Copy bank details to clipboard">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Details
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     9. RSVP
+     ════════════════════════════════════════ -->
+<section id="rsvp" class="rsvp-section" aria-label="RSVP — confirm your attendance">
+  <div class="section-header">
+    <span class="section-label">We hope to see you</span>
+    <h2 class="section-title gold fade-in">Confirm Your Attendance</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1">We hope to count on you</p>
+  </div>
+
+  <!-- TODO: connect form action — Formspree / Netlify Forms / Google Sheets API -->
+  <form id="rsvp-form" class="rsvp-form fade-in" novalidate>
+
+    <!-- Full Name -->
+    <div class="form-group">
+      <label class="form-label" for="rsvp-name">Full Name <span aria-hidden="true">*</span></label>
+      <input
+        id="rsvp-name"
+        class="form-input"
+        type="text"
+        name="name"
+        placeholder="Your full name"
+        required
+        autocomplete="name" />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label class="form-label" for="rsvp-email">Email Address</label>
+      <input
+        id="rsvp-email"
+        class="form-input"
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        autocomplete="email" />
+    </div>
+
+    <!-- Attendance -->
+    <div class="form-group">
+      <span class="form-label" id="attend-label">Will you attend? <span aria-hidden="true">*</span></span>
+      <div class="radio-group" role="radiogroup" aria-labelledby="attend-label">
+        <label class="radio-option">
+          <input type="radio" id="attend-yes" name="attendance" value="yes" required />
+          <span class="radio-custom" aria-hidden="true"></span>
+          <span class="radio-label">Yes, I will attend ✨</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" id="attend-no" name="attendance" value="no" />
+          <span class="radio-custom" aria-hidden="true"></span>
+          <span class="radio-label">I won't be able to attend</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Guest Count (conditional) -->
+    <div class="form-group guests-field">
+      <label class="form-label" for="rsvp-guests">Number of guests (including yourself)</label>
+      <input
+        id="rsvp-guests"
+        class="form-input"
+        type="number"
+        name="guests"
+        min="1"
+        max="10"
+        value="1"
+        style="max-width: 140px" />
+    </div>
+
+    <!-- Allergies checkboxes -->
+    <div class="form-group">
+      <span class="form-label" id="allergy-label">Food allergies &amp; intolerances</span>
+      <div class="checkbox-grid" role="group" aria-labelledby="allergy-label">
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="gluten" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Gluten-free / Coeliac</span>
+        </label>
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="lactose" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Lactose-free</span>
+        </label>
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="vegetarian" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Vegetarian</span>
+        </label>
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="vegan" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Vegan</span>
+        </label>
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="nuts" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Nut allergy</span>
+        </label>
+        <label class="checkbox-option">
+          <input type="checkbox" name="allergy" value="seafood" />
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span class="checkbox-label">Seafood allergy</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Other allergies -->
+    <div class="form-group">
+      <label class="form-label" for="rsvp-other-allergy">Other allergies or restrictions</label>
+      <input
+        id="rsvp-other-allergy"
+        class="form-input"
+        type="text"
+        name="other_allergy"
+        placeholder="e.g., egg allergy, fructose intolerance…" />
+    </div>
+
+    <!-- Message -->
+    <div class="form-group">
+      <label class="form-label" for="rsvp-message">Message to the couple</label>
+      <textarea
+        id="rsvp-message"
+        class="form-textarea"
+        name="message"
+        placeholder="Write us a few words…"></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">Send Confirmation</button>
+
+  </form>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <span class="footer-names">Dorcas &amp; Samie</span>
+  <span class="footer-date">27 December 2026</span>
+  <div class="gold-divider" aria-hidden="true">◆</div>
+  <span class="footer-love">Made with love</span>
+  <span class="footer-copy">&copy; 2027 Dorcas &amp; Samie. All rights reserved.</span>
+</footer>
+
+
+<!-- ════════════════════════════════════════
+     SUCCESS MODAL
+     ════════════════════════════════════════ -->
+<div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-id" aria-describedby="modal-msg-id">
+  <div class="modal-card">
+    <span class="modal-icon" aria-hidden="true">💍</span>
+    <h2 id="modal-title-id" class="modal-title">Thank you!</h2>
+    <p id="modal-msg-id" class="modal-message"></p>
+    <button class="modal-close" autofocus>Close</button>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
