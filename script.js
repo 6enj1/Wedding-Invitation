@@ -616,7 +616,7 @@ function showToast(message) {
    ────────────────────────────────────────── */
 
 /* ← Paste your Apps Script Web App URL here after deploying */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIVQPG3245nUY_EZ9XgNe9iwrPAJaXJpQ0C5UMPkK-4kbwBm4709Bo_f-LYElb6gZw0w/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvaBpVntDFv-pA-yc_qOSFZhQvIL3Gt1fAuph2zqgsOYmJVwHylpQxrMdI5fpNyxc/exec';
 
 (function initRSVP() {
   const form        = $('#rsvp-form');
