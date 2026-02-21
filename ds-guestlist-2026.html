@@ -140,6 +140,13 @@
     .btn-icon { padding: 0.45rem 0.6rem; font-size: 0.9rem; letter-spacing: 0; }
     .btn-logout { border-color: #2a2a2a; color: var(--muted); }
     .btn-logout:hover { background: #222; color: var(--white); border-color: #444; }
+    .auto-refresh-label {
+      color: var(--muted);
+      font-size: 0.65rem;
+      white-space: nowrap;
+      min-width: 32px;
+      text-align: right;
+    }
 
     /* ── Main ── */
     main { padding: 1.25rem; max-width: 1200px; margin: 0 auto; }
@@ -508,7 +515,8 @@
     </div>
     <div class="header-actions">
       <button class="btn" onclick="exportCSV()" title="Export CSV">⬇ <span>Export</span></button>
-      <button class="btn btn-icon" onclick="loadData()" title="Refresh">↻</button>
+      <button class="btn btn-icon" onclick="loadData(true)" title="Refresh">↻</button>
+      <span class="auto-refresh-label" id="refresh-label"></span>
       <button class="btn btn-logout" onclick="logout()">Exit</button>
     </div>
   </header>
@@ -594,11 +602,41 @@
 
   if (sessionStorage.getItem('admin_auth') === '1') showDashboard();
 
+  /* ── AUTO-REFRESH ── */
+  const REFRESH_INTERVAL = 30; // seconds
+  let countdown = REFRESH_INTERVAL;
+  let autoTimer = null;
+  let countdownTimer = null;
+
+  function startAutoRefresh() {
+    clearInterval(autoTimer);
+    clearInterval(countdownTimer);
+    countdown = REFRESH_INTERVAL;
+    updateLabel();
+
+    countdownTimer = setInterval(() => {
+      countdown--;
+      updateLabel();
+      if (countdown <= 0) {
+        countdown = REFRESH_INTERVAL;
+        loadData(false);
+      }
+    }, 1000);
+  }
+
+  function updateLabel() {
+    const el = document.getElementById('refresh-label');
+    if (el) el.textContent = countdown + 's';
+  }
+
   /* ── LOAD DATA (JSONP) ── */
-  function loadData() {
-    document.getElementById('table-wrap').innerHTML  = '<div class="spinner"></div>';
-    document.getElementById('cards-wrap').innerHTML  = '<div class="spinner"></div>';
-    document.getElementById('list-meta').textContent = '';
+  function loadData(showSpinner = true) {
+    if (showSpinner) {
+      document.getElementById('table-wrap').innerHTML  = '<div class="spinner"></div>';
+      document.getElementById('cards-wrap').innerHTML  = '<div class="spinner"></div>';
+      document.getElementById('list-meta').textContent = '';
+    }
+    startAutoRefresh();
 
     const cbName = 'rsvpCb_' + Date.now();
     const script = document.createElement('script');
