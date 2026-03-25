@@ -268,6 +268,9 @@
     .col-num   { color: var(--muted); font-size: 0.72rem; width: 36px; }
     .col-name  { font-weight: 500; color: var(--white); }
     .col-email { color: var(--muted); font-size: 0.75rem; }
+    .col-whatsapp { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+    .col-whatsapp a { color: var(--green); text-decoration: none; }
+    .col-whatsapp a:hover { text-decoration: underline; }
     .col-slim  { white-space: nowrap; }
     .col-text  { max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); font-size: 0.75rem; }
     .col-ts    { color: var(--muted); font-size: 0.7rem; white-space: nowrap; }
@@ -546,7 +549,7 @@
     <div class="filters">
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" type="search" id="search" placeholder="Search name or email…" oninput="renderAll()" />
+        <input class="search-input" type="search" id="search" placeholder="Search name, email or WhatsApp…" oninput="renderAll()" />
       </div>
       <div class="filter-pills">
         <button class="filter-btn active" data-filter="all"       onclick="setFilter(this)">All</button>
@@ -570,7 +573,7 @@
 </div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNyUmcBi6cX-A7PFF2szdIzUcHphUoUacffpRPiLKR7LnrKLv5zPXLdpy4PZ7lkC-A/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoTpqQG9R1LRLlDqTeYWoZWPF43jjW4Kb1cm9a23-X_CCSzLBrrZ1rG_Ar_ni2BpMt/exec';
   const ADMIN_KEY       = 'dorcas-samuel-2026';
   const ADMIN_PASSWORD  = 'dorcas2026';
 
@@ -674,9 +677,9 @@
 
   /* ── STATS ── */
   function updateStats() {
-    const att   = allRows.filter(r => r[3] === 'Attending');
-    const noAtt = allRows.filter(r => r[3] === 'Not Attending');
-    const total = att.reduce((s, r) => s + (Number(r[4]) || 0), 0);
+    const att   = allRows.filter(r => r[4] === 'Attending');
+    const noAtt = allRows.filter(r => r[4] === 'Not Attending');
+    const total = att.reduce((s, r) => s + (Number(r[5]) || 0), 0);
 
     document.getElementById('stat-total').textContent     = allRows.length;
     document.getElementById('stat-attending').textContent = att.length;
@@ -697,8 +700,8 @@
     return allRows
       .map((r, i) => ({ r, sheetRow: allRowNums[i] }))
       .filter(({ r }) => {
-        const matchSearch = !q || r[1].toString().toLowerCase().includes(q) || r[2].toString().toLowerCase().includes(q);
-        const att = r[3] === 'Attending';
+        const matchSearch = !q || r[1].toString().toLowerCase().includes(q) || r[2].toString().toLowerCase().includes(q) || r[3].toString().toLowerCase().includes(q);
+        const att = r[4] === 'Attending';
         const matchFilter = activeFilter === 'all' ? true : activeFilter === 'attending' ? att : !att;
         return matchSearch && matchFilter;
       });
@@ -731,6 +734,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
+            <th>WhatsApp</th>
             <th>Status</th>
             <th>Guests</th>
             <th>Dietary</th>
@@ -745,13 +749,14 @@
               <td class="col-num">${i + 1}</td>
               <td class="col-name">${esc(r[1])}</td>
               <td class="col-email">${esc(r[2]) || '—'}</td>
-              <td class="col-slim">${r[3] === 'Attending'
+              <td class="col-whatsapp">${r[3] ? `<a href="https://wa.me/${esc(r[3]).replace(/[^0-9+]/g,'').replace(/^\+/,'')}" target="_blank" rel="noopener">${esc(r[3])}</a>` : '—'}</td>
+              <td class="col-slim">${r[4] === 'Attending'
                 ? '<span class="badge badge-yes">✓ Attending</span>'
                 : '<span class="badge badge-no">✗ Declined</span>'}</td>
-              <td class="col-slim">${r[3] === 'Attending'
-                ? `<span class="guest-pill">${r[4] || 1}</span>` : '—'}</td>
-              <td class="col-text" title="${esc([r[5],r[6]].filter(Boolean).join(', '))}">${esc([r[5],r[6]].filter(Boolean).join(', ')) || '—'}</td>
-              <td class="col-text" title="${esc(r[7])}">${esc(r[7]) || '—'}</td>
+              <td class="col-slim">${r[4] === 'Attending'
+                ? `<span class="guest-pill">${r[5] || 1}</span>` : '—'}</td>
+              <td class="col-text" title="${esc([r[6],r[7]].filter(Boolean).join(', '))}">${esc([r[6],r[7]].filter(Boolean).join(', ')) || '—'}</td>
+              <td class="col-text" title="${esc(r[8])}">${esc(r[8]) || '—'}</td>
               <td class="col-ts">${esc(r[0])}</td>
               <td><button class="btn-delete" onclick="deleteGuest(${sheetRow},'${esc(r[1])}')">✕ Remove</button></td>
             </tr>
@@ -763,14 +768,15 @@
   /* ── MOBILE CARDS ── */
   function renderCards(pairs) {
     document.getElementById('cards-wrap').innerHTML = pairs.map(({ r, sheetRow }, i) => {
-      const attending = r[3] === 'Attending';
-      const dietary   = [r[5], r[6]].filter(Boolean).join(', ');
+      const attending = r[4] === 'Attending';
+      const dietary   = [r[6], r[7]].filter(Boolean).join(', ');
       return `
         <div class="guest-card">
           <div class="card-top">
             <div>
               <div class="card-name">${esc(r[1])}</div>
               ${r[2] ? `<div class="card-email">${esc(r[2])}</div>` : ''}
+              ${r[3] ? `<div class="card-email"><a href="https://wa.me/${esc(r[3]).replace(/[^0-9+]/g,'').replace(/^\+/,'')}" target="_blank" rel="noopener" style="color:var(--green)">${esc(r[3])}</a></div>` : ''}
             </div>
             ${attending
               ? '<span class="badge badge-yes">✓ Attending</span>'
@@ -780,17 +786,17 @@
             ${attending ? `
               <div class="card-row">
                 <span class="card-row-label">Guests</span>
-                <span class="card-row-value"><span class="guest-pill">${r[4] || 1}</span></span>
+                <span class="card-row-value"><span class="guest-pill">${r[5] || 1}</span></span>
               </div>` : ''}
             ${dietary ? `
               <div class="card-row">
                 <span class="card-row-label">Dietary</span>
                 <span class="card-row-value">${esc(dietary)}</span>
               </div>` : ''}
-            ${r[7] ? `
+            ${r[8] ? `
               <div class="card-row">
                 <span class="card-row-label">Message</span>
-                <span class="card-row-value">${esc(r[7])}</span>
+                <span class="card-row-value">${esc(r[8])}</span>
               </div>` : ''}
           </div>
           <div class="card-footer">
@@ -839,7 +845,7 @@
 
   /* ── EXPORT CSV ── */
   function exportCSV() {
-    const headers = ['Timestamp','Name','Email','Attending','Guests','Dietary','Other','Message'];
+    const headers = ['Timestamp','Name','Email','WhatsApp','Attending','Guests','Dietary','Other','Message'];
     const lines   = [headers, ...allRows].map(r =>
       r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')
     );

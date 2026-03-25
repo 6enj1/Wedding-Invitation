@@ -12,6 +12,7 @@ function doPost(e) {
       new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' }),
       data.name         || '',
       data.email        || '',
+      data.whatsapp     || '',
       data.attendance === 'yes' ? 'Attending' : 'Not Attending',
       data.attendance === 'yes' ? Number(data.guests || 1) : 0,
       Array.isArray(data.allergies) ? data.allergies.join(', ') : (data.allergies || ''),
@@ -57,17 +58,17 @@ function getOrCreateSheet() {
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
     sheet.appendRow([
-      'Timestamp', 'Name', 'Email', 'Attending',
+      'Timestamp', 'Name', 'Email', 'WhatsApp', 'Attending',
       'Guest Count', 'Dietary Requirements', 'Other Restrictions', 'Message',
     ]);
     sheet.setFrozenRows(1);
 
     // Style header row
-    const header = sheet.getRange(1, 1, 1, 8);
+    const header = sheet.getRange(1, 1, 1, 9);
     header.setBackground('#1A1A2E');
     header.setFontColor('#C9A84C');
     header.setFontWeight('bold');
-    sheet.setColumnWidths(1, 8, 180);
+    sheet.setColumnWidths(1, 9, 180);
   }
 
   return sheet;

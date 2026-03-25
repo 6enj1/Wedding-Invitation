@@ -29,12 +29,15 @@ const TRANSLATIONS = {
     'countdown.seconds': 'Seconds',
     'story.label': 'How it all began',
     'story.title': 'Our Story',
-    'story.met.title': 'When We Met',
-    'story.met.text': 'Every great love story has a beginning — ours was no different. Two paths crossed at just the right moment, and nothing was ever the same again.',
-    'story.date.title': 'The First Date',
-    'story.date.text': 'Laughter, good food, and a conversation that never seemed to end. That evening, we both knew something very special had started.',
-    'story.proposal.title': 'The Proposal',
-    'story.proposal.text': 'Under a sky full of stars, with hearts full of love, came the question that would set us on the path to forever. She said yes. ◆',
+    'story.t1': 'The Beginning — 2013',
+    'story.p1': 'Our story began in 2013, when a mutual friend introduced us… though even then, God was already at work, writing something greater than we could see.',
+    'story.t2': 'The First Meeting — 2015',
+    'story.p2': 'What started as a simple conversation grew, over time, into a sincere and lasting friendship. In 2015, in Johannesburg, we saw each other for the first time, unaware that this moment would mark the beginning of something far more meaningful.',
+    'story.t3': 'A Love Written by God',
+    'story.p3': 'Quietly and with perfect timing, God nurtured within us a love that is sincere, patient, and true. Today, we understand that nothing was by chance. It was all part of his plan, bringing our lives together to build a love meant to last a lifetime.',
+    'story.t4': 'Why Johannesburg',
+    'story.p4': 'It is only natural that we have chosen Johannesburg, a place that holds the memory of the first time we saw each other. It would be a true joy for us to share this special day with you.',
+    'story.signature': 'Dorcas & Samuel',
     'details.label': 'Mark your calendar',
     'details.title': 'Details of the Day',
     'details.subtitle': 'Everything you need to know',
@@ -95,8 +98,11 @@ const TRANSLATIONS = {
     'rsvp.label': 'We hope to see you',
     'rsvp.title': 'Confirm Your Attendance',
     'rsvp.subtitle': 'We hope to count on you',
+    'rsvp.deadline': 'Please confirm before 30 June 2026',
     'rsvp.name.label': 'Full Name',
     'rsvp.email.label': 'Email Address',
+    'rsvp.whatsapp.label': 'WhatsApp Number',
+    'rsvp.whatsapp.placeholder': '+27 61 234 5678',
     'rsvp.name.placeholder': 'Your full name',
     'rsvp.email.placeholder': 'your@email.com',
     'rsvp.attend.label': 'Will you attend?',
@@ -128,6 +134,7 @@ const TRANSLATIONS = {
     'toast.copy-manual': 'Please copy manually',
     'toast.name-required': 'Please enter your full name',
     'toast.attend-required': 'Please select your attendance',
+    'toast.contact-required': 'Please enter an email or WhatsApp number',
     'toast.music-unavailable': 'Music unavailable',
   },
   fr: {
@@ -148,12 +155,15 @@ const TRANSLATIONS = {
     'countdown.seconds': 'Secondes',
     'story.label': 'Comment tout a commencé',
     'story.title': 'Notre Histoire',
-    'story.met.title': 'Notre Rencontre',
-    'story.met.text': "Toute grande histoire d'amour a un début — la nôtre ne fut pas différente. Deux chemins se sont croisés au bon moment, et rien ne fut plus jamais pareil.",
-    'story.date.title': 'Le Premier Rendez-vous',
-    'story.date.text': "Des rires, une bonne table et une conversation qui ne semblait jamais vouloir se terminer. Ce soir-là, nous savions tous les deux que quelque chose de très spécial venait de commencer.",
-    'story.proposal.title': 'La Demande en Mariage',
-    'story.proposal.text': "Sous un ciel étoilé, avec des cœurs remplis d'amour, vint la question qui nous mettrait sur le chemin de l'éternité. Elle a dit oui. ◆",
+    'story.t1': 'Le Début — 2013',
+    'story.p1': "Tout a commencé en 2013, lorsqu'un ami mutuel nous a introduits… mais déjà, Dieu écrivait notre histoire.",
+    'story.t2': 'La Première Rencontre — 2015',
+    'story.p2': "Au fil des années, ce qui n'était au départ qu'une simple conversation est devenu une amitié sincère et profonde. En 2015, à Johannesburg, nous nous sommes vus pour la première fois, sans savoir que ce moment marquait le début de quelque chose de bien plus grand.",
+    'story.t3': 'Un Amour Écrit par Dieu',
+    'story.p3': "Sans bruit, sans précipitation, Dieu a semé en nous un amour sincère, patient et véritable. Et aujourd'hui, nous réalisons que tout faisait partie de son plan. Unir nos vies pour construire un amour appelé à durer toujours.",
+    'story.t4': 'Pourquoi Johannesburg',
+    'story.p4': "C'est donc tout naturellement que nous avons choisi Johannesburg, un lieu qui représente pour nous le souvenir de notre première rencontre. Ce serait un immense plaisir pour nous de partager ce jour si spécial avec vous.",
+    'story.signature': 'Dorcas & Samuel',
     'details.label': 'Notez la date',
     'details.title': 'Détails du Jour',
     'details.subtitle': 'Tout ce que vous devez savoir',
@@ -214,8 +224,11 @@ const TRANSLATIONS = {
     'rsvp.label': 'Nous espérons vous voir',
     'rsvp.title': 'Confirmez Votre Présence',
     'rsvp.subtitle': 'Nous comptons sur vous',
+    'rsvp.deadline': 'Veuillez confirmer avant le 30 juin 2026',
     'rsvp.name.label': 'Nom Complet',
     'rsvp.email.label': 'Adresse E-mail',
+    'rsvp.whatsapp.label': 'Numéro WhatsApp',
+    'rsvp.whatsapp.placeholder': '+27 61 234 5678',
     'rsvp.name.placeholder': 'Votre nom complet',
     'rsvp.email.placeholder': 'votre@email.com',
     'rsvp.attend.label': 'Serez-vous présent(e) ?',
@@ -247,6 +260,7 @@ const TRANSLATIONS = {
     'toast.copy-manual': 'Veuillez copier manuellement',
     'toast.name-required': 'Veuillez saisir votre nom complet',
     'toast.attend-required': 'Veuillez sélectionner votre présence',
+    'toast.contact-required': 'Veuillez saisir un e-mail ou un numéro WhatsApp',
     'toast.music-unavailable': 'Musique indisponible',
   },
 };
@@ -616,7 +630,7 @@ function showToast(message) {
    ────────────────────────────────────────── */
 
 /* ← Paste your Apps Script Web App URL here after deploying */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNyUmcBi6cX-A7PFF2szdIzUcHphUoUacffpRPiLKR7LnrKLv5zPXLdpy4PZ7lkC-A/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwoTpqQG9R1LRLlDqTeYWoZWPF43jjW4Kb1cm9a23-X_CCSzLBrrZ1rG_Ar_ni2BpMt/exec';
 
 (function initRSVP() {
   const form        = $('#rsvp-form');
@@ -659,6 +673,14 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNyUmcBi6cX-A7
       return;
     }
 
+    const email    = $('#rsvp-email').value.trim();
+    const whatsapp = $('#rsvp-whatsapp').value.trim();
+    if (!email && !whatsapp) {
+      showToast(t('toast.contact-required'));
+      $('#rsvp-email').focus();
+      return;
+    }
+
     // Collect all form data
     const allergies = [...form.querySelectorAll('input[name="allergy"]:checked')]
       .map(cb => cb.value);
@@ -666,6 +688,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNyUmcBi6cX-A7
     const payload = {
       name,
       email:        $('#rsvp-email').value.trim(),
+      whatsapp:     $('#rsvp-whatsapp').value.trim(),
       attendance:   attending ? 'yes' : 'no',
       guests:       $('#rsvp-guests').value,
       allergies,

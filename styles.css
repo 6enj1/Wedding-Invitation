@@ -733,6 +733,15 @@ ul { list-style: none; }
   line-height: 1.6;
 }
 
+.story-signature {
+  font-family: var(--font-script, 'Great Vibes', cursive);
+  font-size: 1.6rem;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 768px) {
   .timeline::before { left: 1.5rem; }
   .timeline-item,
@@ -1306,6 +1315,13 @@ ul { list-style: none; }
   object-fit: contain;
   margin: 0 auto 0.75rem;
   opacity: 0.9;
+}
+
+.rsvp-deadline {
+  font-weight: 500;
+  color: var(--gold) !important;
+  font-style: italic;
+  margin-top: 0.25rem;
 }
 
 .rsvp-form {
