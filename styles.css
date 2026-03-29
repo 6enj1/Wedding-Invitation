@@ -727,6 +727,16 @@ ul { list-style: none; }
 .story-section {
   background: var(--crystal);
   padding: 5rem 2rem;
+  position: relative;
+}
+
+.story-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/images/7afa8c7d-be52-4495-aa8e-b41fc550571e.png') center / cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
 }
 
 .timeline {

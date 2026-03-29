@@ -20,7 +20,7 @@ const TRANSLATIONS = {
     'nav.faq': 'FAQ',
     'nav.rsvp': 'RSVP',
     'hero.label': 'Together with their families',
-    'hero.tagline': 'Request the honour of your presence at their wedding celebration',
+    'hero.tagline': 'Request the honour of your presence at our wedding celebration',
     'countdown.title': 'Counting Down',
     'countdown.subtitle': 'To the most special day of our lives',
     'countdown.days': 'Days',
