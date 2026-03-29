@@ -290,6 +290,9 @@ function applyLang(lang) {
 }
 
 (function initI18n() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang) localStorage.setItem('lang', urlLang);
   const saved   = localStorage.getItem('lang');
   const browser = navigator.language || navigator.userLanguage || 'en';
   const lang    = saved || (browser.toLowerCase().startsWith('fr') ? 'fr' : 'en');
