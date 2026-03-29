@@ -238,6 +238,64 @@
 
 
 <!-- ════════════════════════════════════════
+     4. DAY DETAILS
+     ════════════════════════════════════════ -->
+<section id="details" class="details-section" aria-label="Details of the day">
+  <div class="section-header">
+    <span class="section-label" data-i18n="details.label">Mark your calendar</span>
+    <h2 class="section-title gold fade-in" data-i18n="details.title">Details of the Day</h2>
+    <p class="section-subtitle fade-in fade-in-delay-1" data-i18n="details.subtitle">Everything you need to know</p>
+  </div>
+
+  <div class="glass-card details-card fade-in">
+    <p class="venue-name">Avianto</p>
+    <p class="venue-address">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      69 R114, Muldersdrift, 1747
+    </p>
+    <p class="venue-time">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span data-i18n="details.time">From 15:00 to 23:00 · 26 December 2026</span>
+    </p>
+
+    <div class="venue-image-wrap">
+      <img
+        src="assets/images/medium-banner-2-1.jpg"
+        alt="Avianto wedding venue"
+        class="venue-image"
+        loading="lazy" />
+    </div>
+
+    <div class="map-wrapper" aria-label="Map showing the venue location">
+      <iframe
+        src="https://maps.google.com/maps?q=Avianto,+69+R114,+Muldersdrift,+1747&ll=-26.027732849288338,27.838447683503684&z=17&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Avianto venue location map"
+        style="width:100%;height:100%;border:0">
+      </iframe>
+    </div>
+
+    <div class="details-buttons">
+      <a
+        href="https://maps.google.com/?q=Avianto,+69+R114,+Muldersdrift,+1747"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold"
+        aria-label="Open venue in Google Maps"
+        data-i18n="details.maps">
+        &#x1F5FA; Open in Maps
+      </a>
+      <button class="btn-outline-gold" onclick="downloadICS()" aria-label="Add wedding to your calendar" data-i18n="details.calendar">
+        &#x1F4C5; Add to Calendar
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
      9. RSVP
      ════════════════════════════════════════ -->
 <section id="rsvp" class="rsvp-section" aria-label="RSVP — confirm your attendance">
