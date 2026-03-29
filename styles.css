@@ -734,8 +734,8 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   inset: 0;
-  background: url('assets/images/7afa8c7d-be52-4495-aa8e-b41fc550571e.png') center / cover no-repeat;
-  opacity: 0.08;
+  background: url('assets/images/7afa8c7d-be52-4495-aa8e-b41fc550571e.JPG') center / cover no-repeat;
+  opacity: 0.4;
   pointer-events: none;
 }
 
