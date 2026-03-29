@@ -745,7 +745,7 @@ ul { list-style: none; }
 
 @media (max-width: 600px) {
   .story-section::before {
-    background-position: center 60%;
+    background-position: center 53%;
   }
 }
 
