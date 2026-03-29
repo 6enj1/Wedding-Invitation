@@ -730,6 +730,10 @@ ul { list-style: none; }
   position: relative;
 }
 
+.story-section .section-label {
+  color: var(--gold);
+}
+
 .story-section::before {
   content: '';
   position: absolute;
@@ -737,6 +741,12 @@ ul { list-style: none; }
   background: url('assets/images/7afa8c7d-be52-4495-aa8e-b41fc550571e.JPG') center / cover no-repeat;
   opacity: 0.4;
   pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .story-section::before {
+    background-position: center right;
+  }
 }
 
 .timeline {
