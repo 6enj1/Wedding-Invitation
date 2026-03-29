@@ -350,7 +350,7 @@ function applyLang(lang) {
     const iconOff = $('#icon-speaker-off');
     const musicBtn = $('.music-toggle');
     if (audio) {
-      audio.volume = 0.15;
+      audio.volume = 0.1;
       audio.play().catch(() => {});
       if (musicBtn && iconOn && iconOff) {
         iconOn.style.display  = 'block';
