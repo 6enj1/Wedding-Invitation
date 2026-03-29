@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D &amp; S — Guest List</title>
+  <title>S &amp; D — Guest List</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -48,6 +48,10 @@
       font-size: 2.5rem;
       color: var(--gold);
       letter-spacing: 0.08em;
+    }
+    .monogram-logo {
+      height: 80px;
+      width: auto;
     }
     .login-sub { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.05em; }
     #login-form {
@@ -487,7 +491,7 @@
 
 <!-- ── LOGIN ── -->
 <div id="login-screen">
-  <div class="login-monogram">D &amp; S</div>
+  <div class="login-monogram"><img src="assets/images/s&amp;dlogo.png" alt="S &amp; D" class="monogram-logo" /></div>
   <div class="login-sub">26 December 2026 · Guest List</div>
   <form id="login-form">
     <input type="password" id="pwd-input" placeholder="Enter password" autocomplete="current-password" />
@@ -514,7 +518,7 @@
   <header>
     <div class="header-title">
       Guest List
-      <small>Dorcas &amp; Samuel · 26 Dec 2026</small>
+      <small>Samuel &amp; Dorcas · 26 Dec 2026</small>
     </div>
     <div class="header-actions">
       <button class="btn" onclick="exportCSV()" title="Export CSV">⬇ <span>Export</span></button>

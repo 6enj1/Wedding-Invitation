@@ -37,7 +37,7 @@ const TRANSLATIONS = {
     'story.p3': 'Quietly and with perfect timing, God nurtured within us a love that is sincere, patient, and true. Today, we understand that nothing was by chance. It was all part of his plan, bringing our lives together to build a love meant to last a lifetime.',
     'story.t4': 'Why Johannesburg',
     'story.p4': 'It is only natural that we have chosen Johannesburg, a place that holds the memory of the first time we saw each other. It would be a true joy for us to share this special day with you.',
-    'story.signature': 'Dorcas & Samuel',
+    'story.signature': 'Samuel & Dorcas',
     'details.label': 'Mark your calendar',
     'details.title': 'Details of the Day',
     'details.subtitle': 'Everything you need to know',
@@ -127,7 +127,7 @@ const TRANSLATIONS = {
     'modal.no.msg': 'Thank you for letting us know, {name}. You will be in our hearts on the day.',
     'modal.close': 'Close',
     'footer.love': 'Made with love',
-    'footer.rights': '© 2027 Dorcas & Samuel. All rights reserved.',
+    'footer.rights': '© 2027 Samuel & Dorcas. All rights reserved.',
     'music.play': 'Play background music',
     'music.mute': 'Mute background music',
     'toast.copied': 'Copied! 💛',
@@ -163,7 +163,7 @@ const TRANSLATIONS = {
     'story.p3': "Sans bruit, sans précipitation, Dieu a semé en nous un amour sincère, patient et véritable. Et aujourd'hui, nous réalisons que tout faisait partie de son plan. Unir nos vies pour construire un amour appelé à durer toujours.",
     'story.t4': 'Pourquoi Johannesburg',
     'story.p4': "C'est donc tout naturellement que nous avons choisi Johannesburg, un lieu qui représente pour nous le souvenir de notre première rencontre. Ce serait un immense plaisir pour nous de partager ce jour si spécial avec vous.",
-    'story.signature': 'Dorcas & Samuel',
+    'story.signature': 'Samuel & Dorcas',
     'details.label': 'Notez la date',
     'details.title': 'Détails du Jour',
     'details.subtitle': 'Tout ce que vous devez savoir',
@@ -253,7 +253,7 @@ const TRANSLATIONS = {
     'modal.no.msg': 'Merci de nous en avoir informés, {name}. Vous serez dans nos cœurs ce jour-là.',
     'modal.close': 'Fermer',
     'footer.love': 'Fait avec amour',
-    'footer.rights': '© 2027 Dorcas & Samuel. Tous droits réservés.',
+    'footer.rights': '© 2027 Samuel & Dorcas. Tous droits réservés.',
     'music.play': 'Écouter la musique',
     'music.mute': 'Couper la musique',
     'toast.copied': 'Copié ! 💛',
@@ -338,6 +338,7 @@ function applyLang(lang) {
 
     // load() + play() inside the tap gesture — satisfies iOS policy
     video.load();
+    video.playbackRate = 2;
     video.play().catch(() => {});
 
     // Start background audio (loop is set on the element)
@@ -393,6 +394,59 @@ function applyLang(lang) {
       mobileNav.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+})();
+
+/* ──────────────────────────────────────────
+   HERO IMAGE SLIDESHOW (mobile)
+   ────────────────────────────────────────── */
+(function initHeroSlideshow() {
+  const panels = $$('.hero-img-panel');
+  if (panels.length < 2) return;
+
+  let current = 0;
+  panels[0].classList.add('active');
+
+  // Desktop: reveal panels with staggered blur-to-clear after intro video ends
+  const splash = $('#intro-splash');
+  if (splash) {
+    // Wait for the splash to fade out after the video ends
+    const mo = new MutationObserver(() => {
+      if (splash.classList.contains('fade-out')) {
+        mo.disconnect();
+        panels.forEach((p, i) => {
+          setTimeout(() => p.classList.add('revealed'), 400 + i * 350);
+        });
+      }
+    });
+    mo.observe(splash, { attributes: true, attributeFilter: ['class'] });
+  } else {
+    // No splash (already removed or doesn't exist) — reveal immediately
+    panels.forEach(p => p.classList.add('revealed'));
+  }
+
+  function isMobile() { return window.innerWidth <= 600; }
+
+  let timer = null;
+
+  function startSlideshow() {
+    stopSlideshow();
+    timer = setInterval(() => {
+      if (!isMobile()) return;
+      panels[current].classList.remove('active');
+      current = (current + 1) % panels.length;
+      panels[current].classList.add('active');
+    }, 3000);
+  }
+
+  function stopSlideshow() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  if (isMobile()) startSlideshow();
+  window.addEventListener('resize', () => {
+    if (isMobile()) { if (!timer) startSlideshow(); }
+    else { stopSlideshow(); }
   });
 })();
 
@@ -604,7 +658,7 @@ function applyLang(lang) {
         'Account Type: FNB Aspire Current Account',
         'Account Number: 63109054914',
         'Branch Code: 250655',
-        'Reference: D&S Wedding',
+        'Reference: S&D Wedding',
       ].join('\n');
 
       navigator.clipboard.writeText(bankInfo)
@@ -752,12 +806,12 @@ function downloadICS() {
   const ics = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Dorcas & Samuel Wedding//EN',
+    'PRODID:-//Samuel & Dorcas Wedding//EN',
     'BEGIN:VEVENT',
     'DTSTART:20261226T150000',
     'DTEND:20261226T230000',
-    'SUMMARY:Dorcas & Samuel Wedding 💍',
-    'DESCRIPTION:Royal Night in Crystal — Wedding Celebration of Dorcas & Samuel',
+    'SUMMARY:Samuel & Dorcas Wedding 💍',
+    'DESCRIPTION:Royal Night in Crystal — Wedding Celebration of Samuel & Dorcas',
     'LOCATION:Avianto - Wedding\\, Conference & Event Venue\\, 69 R114\\, Muldersdrift\\, 1747',
     'STATUS:CONFIRMED',
     'END:VEVENT',
@@ -768,7 +822,7 @@ function downloadICS() {
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href     = url;
-  a.download = 'Dorcas-Samuel-Wedding.ics';
+  a.download = 'Samuel-Dorcas-Wedding.ics';
   a.click();
   URL.revokeObjectURL(url);
 }
