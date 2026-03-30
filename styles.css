@@ -517,6 +517,7 @@ ul { list-style: none; }
 
 .hero-img-panel {
   overflow: hidden;
+  position: relative;
   opacity: 0;
   filter: blur(8px);
   transition: opacity 1.4s ease-out, filter 1.8s ease-out;
@@ -532,6 +533,25 @@ ul { list-style: none; }
   height: 100%;
   object-fit: cover;
   object-position: center top;
+}
+
+/* Side panels: stack images and crossfade */
+.hero-panel-left img,
+.hero-panel-right img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-panel-left img.active,
+.hero-panel-right img.active {
+  opacity: 1;
+}
+
+/* Center panel image is always visible on desktop */
+.hero-panel-center img {
+  display: block;
 }
 
 .hero-overlay {
@@ -551,20 +571,24 @@ ul { list-style: none; }
   .hero-img-panel {
     position: absolute;
     inset: 0;
+    opacity: 1;
+    filter: none;
+  }
+
+  .hero-img-panel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     opacity: 0;
     filter: blur(6px);
     transition: opacity 1.2s ease-in-out, filter 1.4s ease-in-out;
   }
 
-  .hero-img-panel.active,
-  .hero-img-panel.revealed {
+  .hero-img-panel img.active {
     opacity: 1;
     filter: blur(0);
-  }
-
-  .hero-img-panel:not(.active) {
-    opacity: 0;
-    filter: blur(6px);
   }
 }
 

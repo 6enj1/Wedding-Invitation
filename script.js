@@ -414,52 +414,145 @@ function applyLang(lang) {
    HERO IMAGE SLIDESHOW (mobile)
    ────────────────────────────────────────── */
 (function initHeroSlideshow() {
-  const panels = $$('.hero-img-panel');
-  if (panels.length < 2) return;
+  const leftPanel = $('.hero-panel-left');
+  const rightPanel = $('.hero-panel-right');
+  const allPanels = $$('.hero-img-panel');
+  if (!leftPanel || !rightPanel) return;
 
-  let current = 0;
-  panels[0].classList.add('active');
+  const leftImgs = [...leftPanel.querySelectorAll('img')];
+  const rightImgs = [...rightPanel.querySelectorAll('img')];
 
-  // Desktop: reveal panels with staggered blur-to-clear after intro video ends
+  function isMobile() { return window.innerWidth <= 600; }
+
+  /* ── Desktop: reveal panels then start side-panel rotation ── */
   const splash = $('#intro-splash');
+
+  function afterReveal() {
+    if (!isMobile()) startDesktopSlideshow();
+    else startMobileSlideshow();
+  }
+
   if (splash) {
-    // Wait for the splash to fade out after the video ends
     const mo = new MutationObserver(() => {
       if (splash.classList.contains('fade-out')) {
         mo.disconnect();
-        panels.forEach((p, i) => {
+        allPanels.forEach((p, i) => {
           setTimeout(() => p.classList.add('revealed'), 400 + i * 350);
         });
+        setTimeout(afterReveal, 400 + allPanels.length * 350 + 500);
       }
     });
     mo.observe(splash, { attributes: true, attributeFilter: ['class'] });
   } else {
-    // No splash (already removed or doesn't exist) — reveal immediately
-    panels.forEach(p => p.classList.add('revealed'));
+    allPanels.forEach(p => p.classList.add('revealed'));
+    afterReveal();
   }
 
-  function isMobile() { return window.innerWidth <= 600; }
+  /* ── DESKTOP SLIDESHOW ── */
+  let desktopTimer = null;
+  let leftIdx = -1, rightIdx = -1;
 
-  let timer = null;
+  function pickRandom(len, excludeA, excludeB) {
+    let n;
+    do { n = Math.floor(Math.random() * len); } while (n === excludeA || n === excludeB);
+    return n;
+  }
 
-  function startSlideshow() {
-    stopSlideshow();
-    timer = setInterval(() => {
+  function startDesktopSlideshow() {
+    stopDesktopSlideshow();
+    // Initial picks — ensure left ≠ right
+    leftIdx = Math.floor(Math.random() * leftImgs.length);
+    rightIdx = pickRandom(rightImgs.length, leftIdx, -1);
+    leftImgs[leftIdx].classList.add('active');
+    rightImgs[rightIdx].classList.add('active');
+
+    desktopTimer = setInterval(() => {
+      if (isMobile()) return;
+      const prevLeft = leftIdx;
+      const prevRight = rightIdx;
+
+      leftImgs[prevLeft].classList.remove('active');
+      rightImgs[prevRight].classList.remove('active');
+
+      // New left: different from previous left AND different from what right will be
+      // New right: different from previous right AND different from new left
+      leftIdx = pickRandom(leftImgs.length, prevLeft, prevRight);
+      rightIdx = pickRandom(rightImgs.length, prevRight, leftIdx);
+
+      leftImgs[leftIdx].classList.add('active');
+      rightImgs[rightIdx].classList.add('active');
+    }, 6000);
+  }
+
+  function stopDesktopSlideshow() {
+    if (desktopTimer) { clearInterval(desktopTimer); desktopTimer = null; }
+  }
+
+  /* ── MOBILE SLIDESHOW ── */
+  let mobileTimer = null;
+  let mobileImgs = [];   // 7 unique images (left panel + center)
+  let mobileIdx = -1;
+  let mobileQueue = [];  // shuffled queue so every image shows before repeats
+
+  function collectMobileImgs() {
+    mobileImgs = [
+      ...leftPanel.querySelectorAll('img'),
+      ...$('.hero-panel-center').querySelectorAll('img')
+    ];
+  }
+
+  function shuffleQueue(excludeIdx) {
+    // Build array of all indices except the one currently showing
+    let indices = [];
+    for (let i = 0; i < mobileImgs.length; i++) {
+      if (i !== excludeIdx) indices.push(i);
+    }
+    // Fisher-Yates shuffle
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  }
+
+  function startMobileSlideshow() {
+    stopMobileSlideshow();
+    collectMobileImgs();
+    if (!mobileImgs.length) return;
+
+    // Clear all active states across every panel
+    $$('.hero-img-panel img').forEach(img => img.classList.remove('active'));
+
+    mobileIdx = Math.floor(Math.random() * mobileImgs.length);
+    mobileImgs[mobileIdx].classList.add('active');
+    mobileQueue = shuffleQueue(mobileIdx);
+
+    mobileTimer = setInterval(() => {
       if (!isMobile()) return;
-      panels[current].classList.remove('active');
-      current = (current + 1) % panels.length;
-      panels[current].classList.add('active');
+      mobileImgs[mobileIdx].classList.remove('active');
+      // Pull next from queue; reshuffle when empty
+      if (!mobileQueue.length) mobileQueue = shuffleQueue(mobileIdx);
+      mobileIdx = mobileQueue.shift();
+      mobileImgs[mobileIdx].classList.add('active');
     }, 3000);
   }
 
-  function stopSlideshow() {
-    if (timer) { clearInterval(timer); timer = null; }
+  function stopMobileSlideshow() {
+    if (mobileTimer) { clearInterval(mobileTimer); mobileTimer = null; }
   }
 
-  if (isMobile()) startSlideshow();
+  /* ── Resize handler ── */
   window.addEventListener('resize', () => {
-    if (isMobile()) { if (!timer) startSlideshow(); }
-    else { stopSlideshow(); }
+    if (isMobile()) {
+      stopDesktopSlideshow();
+      leftImgs.forEach(i => i.classList.remove('active'));
+      rightImgs.forEach(i => i.classList.remove('active'));
+      if (!mobileTimer) startMobileSlideshow();
+    } else {
+      stopMobileSlideshow();
+      $$('.hero-img-panel img').forEach(i => i.classList.remove('active'));
+      if (!desktopTimer) startDesktopSlideshow();
+    }
   });
 })();
 
