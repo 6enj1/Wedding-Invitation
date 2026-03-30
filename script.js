@@ -436,10 +436,15 @@ function applyLang(lang) {
     const mo = new MutationObserver(() => {
       if (splash.classList.contains('fade-out')) {
         mo.disconnect();
-        allPanels.forEach((p, i) => {
-          setTimeout(() => p.classList.add('revealed'), 400 + i * 350);
-        });
-        setTimeout(afterReveal, 400 + allPanels.length * 350 + 500);
+        if (isMobile()) {
+          // Mobile: start immediately, no staggered panel reveal needed
+          startMobileSlideshow();
+        } else {
+          allPanels.forEach((p, i) => {
+            setTimeout(() => p.classList.add('revealed'), 400 + i * 350);
+          });
+          setTimeout(() => startDesktopSlideshow(), 400 + allPanels.length * 350 + 500);
+        }
       }
     });
     mo.observe(splash, { attributes: true, attributeFilter: ['class'] });
