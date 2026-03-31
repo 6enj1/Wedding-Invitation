@@ -437,13 +437,16 @@ function applyLang(lang) {
       if (splash.classList.contains('fade-out')) {
         mo.disconnect();
         if (isMobile()) {
-          // Mobile: start immediately, no staggered panel reveal needed
           startMobileSlideshow();
         } else {
-          allPanels.forEach((p, i) => {
-            setTimeout(() => p.classList.add('revealed'), 400 + i * 350);
-          });
-          setTimeout(() => startDesktopSlideshow(), 400 + allPanels.length * 350 + 500);
+          // Center reveals first, sides follow shortly after
+          const center = $('.hero-panel-center');
+          if (center) center.classList.add('revealed');
+          setTimeout(() => {
+            leftPanel.classList.add('revealed');
+            rightPanel.classList.add('revealed');
+            startDesktopSlideshow();
+          }, 400);
         }
       }
     });
