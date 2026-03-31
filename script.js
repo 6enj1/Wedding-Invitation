@@ -559,6 +559,8 @@ function applyLang(lang) {
     } else {
       stopMobileSlideshow();
       $$('.hero-img-panel img').forEach(i => i.classList.remove('active'));
+      // Ensure panels are revealed when switching to desktop
+      allPanels.forEach(p => p.classList.add('revealed'));
       if (!desktopTimer) startDesktopSlideshow();
     }
   });
